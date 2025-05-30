@@ -19,7 +19,7 @@
             border-radius: 0.75rem; 
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
             width: 100%;
-            max-width: 64rem; 
+            max-width: 64rem; /* 1024px */
             padding: 1.5rem; 
             margin-left: auto;
             margin-right: auto;
@@ -162,8 +162,41 @@
             border-color: #0ea5e9; 
             box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3); 
         }
-        .header-logo-container { display: inline-block; padding: 0.75rem; background-color: #0284c7; border-radius: 0.5rem; }
-        .header-logo { max-height: 50px; display: block; }
+        
+        /* Updated CSS Logo Styles */
+        .css-logo-dna {
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 700; /* Bold */
+            font-size: 3.75rem; /* Tailwind text-6xl */
+            line-height: 1;
+            text-align: center; 
+            padding: 0.5rem 0.75rem; 
+            display: inline-block; 
+            border-top: 3px solid #f59e0b;    /* Yellow */
+            border-right: 3px solid #0284c7;  /* Blue */
+            border-bottom: 3px solid #0284c7; /* Blue */
+            border-left: 3px solid #f59e0b;   /* Yellow */
+            margin-bottom: 0.75rem; 
+        }
+        @media (min-width: 640px) {
+            .css-logo-dna {
+                font-size: 4.5rem; 
+                padding: 0.75rem 1rem; 
+            }
+        }
+        .css-logo-dna .logo-d { 
+            color: #0284c7; /* Blue */
+        }
+        .css-logo-dna .logo-n { 
+            background: linear-gradient(to bottom, #0284c7 50%, #f59e0b 50%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .css-logo-dna .logo-a { 
+            color: #f59e0b; /* Yellow */
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -217,24 +250,30 @@
         .activity-thumbnail-default { background-color: #e0f2fe; color: #0c4a6e; } 
 
         .custom-rect-border {
-            border-top: 3px solid #0284c7;    /* Blue */
+            border-top: 3px solid #f59e0b;    /* Yellow */
             border-right: 3px solid #0284c7;   /* Blue */
-            border-bottom: 3px solid #f59e0b; /* Yellow */
+            border-bottom: 3px solid #0284c7; /* Blue */
             border-left: 3px solid #f59e0b;    /* Yellow */
-            padding-bottom: 1rem; /* Existing nav padding-bottom was pb-4 (1rem), adjust if needed */
+            padding-bottom: 1rem; 
         }
-        /* Remove default border from nav if custom-rect-border is applied */
         nav.custom-rect-border {
-            border-bottom-width: 3px !important; /* Override Tailwind's border-b */
-            border-bottom-color: #f59e0b !important;
+            /* Ensure these override Tailwind if necessary */
+            border-bottom-width: 3px !important; 
+            border-bottom-color: #0284c7 !important;
+            border-right-width: 3px !important;
+            border-right-color: #0284c7 !important;
+            border-top-width: 3px !important;
+            border-top-color: #f59e0b !important;
+            border-left-width: 3px !important;
+            border-left-color: #f59e0b !important;
         }
 
         #todays-training-card.custom-rect-border {
              border-left-color: #f59e0b !important; 
-             border-bottom-color: #f59e0b !important;
-             border-top-color: #0284c7 !important;
+             border-bottom-color: #0284c7 !important;
+             border-top-color: #f59e0b !important;
              border-right-color: #0284c7 !important;
-             border-width: 3px !important; /* Ensure all sides are 3px */
+             border-width: 3px !important; 
         }
         
         .main-title {
@@ -297,18 +336,18 @@
         }
 
         #toggleRepeatsButton {
-            background-color: #0284c7; /* Blue background */
-            color: white;              /* White text */
-            border: 2px solid #f59e0b; /* Yellow border */
-            padding: 0.3rem 0.8rem;   /* Slightly larger padding */
-            font-size: 0.85rem;        /* Slightly larger font */
+            background-color: #0284c7; 
+            color: white;              
+            border: 2px solid #f59e0b; 
+            padding: 0.3rem 0.8rem;   
+            font-size: 0.85rem;        
             font-weight: 500;
-            border-radius: 0.375rem; /* Standard rounded corners */
+            border-radius: 0.375rem; 
             transition: background-color 0.2s, border-color 0.2s;
         }
         #toggleRepeatsButton:hover {
-            background-color: #0369a1; /* Darker blue */
-            border-color: #d97706; /* Darker yellow */
+            background-color: #0369a1; 
+            border-color: #d97706; 
         }
 
 
@@ -398,7 +437,6 @@
             #main-app-wrapper > nav,
             #calendar-controls, 
             .calendar-grid, 
-            /* #todays-training-card, */ /* Keep this visible if it's the target for printing */
             #this-weeks-plan-card, 
             #mileageChart, 
             #training-plan-content .chart-container, 
@@ -505,12 +543,9 @@
 <body class="min-h-screen p-4 py-8"> 
     <div id="login-container" class="main-container">
         <header class="mb-8 text-center">
-             <div class="header-logo-container mb-4"> 
-                 <img src="https://iliosports.com/wp-content/uploads/2021/03/logo-13.png"
-                      alt="Helios Running Team Logo"
-                      class="header-logo"
-                      onerror="this.parentElement.innerHTML='<h1 class=\'text-2xl sm:text-3xl font-bold text-white\'>Helios Running</h1>'">
-             </div>
+             <div class="css-logo-dna">
+                <span class="logo-d">D</span><span class="logo-n">N</span><span class="logo-a">A</span>
+            </div>
             <h1 class="text-3xl sm:text-4xl main-title text-stone-800 mt-2"> 
                 <span class="title-project" id="mainTitleProject">project:</span> <span class="title-marathon" id="mainTitleMarathon">Marathon</span>
             </h1>
@@ -539,12 +574,9 @@
 
     <div id="main-app-wrapper" class="main-container hidden">
         <header class="mb-8 text-center"> 
-             <div class="header-logo-container mb-4"> 
-                 <img src="https://iliosports.com/wp-content/uploads/2021/03/logo-13.png"
-                      alt="Helios Running Team Logo"
-                      class="header-logo"
-                      onerror="this.parentElement.innerHTML='<h1 class=\'text-2xl sm:text-3xl font-bold text-white\'>Helios Running</h1>'">
-             </div>
+            <div class="css-logo-dna">
+                <span class="logo-d">D</span><span class="logo-n">N</span><span class="logo-a">A</span>
+            </div>
             <h1 class="text-3xl sm:text-4xl main-title text-stone-800 mt-2"> 
                 <span class="title-project" id="appHeaderTitleProject">project:</span> <span class="title-marathon" id="appHeaderTitleMarathon">Marathon</span>
             </h1>
@@ -583,7 +615,7 @@ const userSpecificDataSources = {
     "ADMIN": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec", 
     "USER_HELIOS": "https://script.google.com/macros/s/AKfycbwcdAtQXpojQk4_jtn4pHoZm2JQihJaYMogcJZJNJLX46ILP0zODpuPyVi0b5n9wLeG7w/exec", 
     "USER_APOLLO": "YOUR_APPS_SCRIPT_URL_FOR_APOLLO_SHEET_HERE", 
-    "RUN1": "https://script.google.com/macros/s/AKfycbyVKYRRgK0V2X1iYBvOkJ8Rny0j5_Ct3cqFpmTkcy8r7WDySOAwnOnzA5gVdlFtOOT4nw/exec",
+    "RUN1": "https://script.google.com/macros/s/AKfycbwQjIzVstR_B86qSsSkfH0mPZYFLyCa7Edwwpa7NZdwhUQP8t5vRtOtgSNfPy5RPMiWdw/exec",
     "ADMINX": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec" 
 };
 
@@ -844,8 +876,8 @@ function renderTodayPaces(lt2PaceString) {
     }
     
     toggleRepeatsButton.classList.remove('hidden');
-    toggleRepeatsButton.textContent = 'Show Repeats'; 
     const repeatsTableId = 'today-repeats-table';
+    let repeatsTable = document.getElementById(repeatsTableId);
 
 
     const zonesData = [
@@ -889,8 +921,11 @@ function renderTodayPaces(lt2PaceString) {
     });
     repeatsTableHtml += `</tbody></table>`;
     repeatsContainer.innerHTML = repeatsTableHtml;
+    
+    repeatsTable = document.getElementById(repeatsTableId);
+    toggleRepeatsButton.textContent = repeatsTable && repeatsTable.classList.contains('hidden') ? 'Show Repeats' : 'Hide Repeats';
 
-    toggleRepeatsButton.onclick = function() {
+    toggleRepeatsButton.onclick = function() { 
         const table = document.getElementById(repeatsTableId);
         if (table) {
             table.classList.toggle('hidden');
@@ -949,7 +984,7 @@ function renderTodaysTraining() {
             const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
             if (isValidDate(planStartDate) && today < planStartDate) {
                 message = `Plan starts on ${formatDate(planStartDate)}. No training scheduled yet.`;
-            } else if (currentRaceDate && isValidDate(currentRaceDate) && today > currentRaceDate) { // currentRaceDate is plan end date
+            } else if (currentRaceDate && isValidDate(currentRaceDate) && today > currentRaceDate) { 
                  message = `Plan ended on ${formatDate(currentRaceDate)}. No training scheduled.`;
             }
         }
@@ -961,18 +996,16 @@ function renderTodaysTraining() {
         <div id="today-zones-content"></div> 
         <div class="mt-3 mb-1 flex justify-between items-center">
              <h3 class="text-lg font-semibold" style="color: #f59e0b;">Repeats</h3>
-             <button id="toggleRepeatsButton" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-2 py-1 rounded hidden">Show Repeats</button>
+             <button id="toggleRepeatsButton" class="hidden">Show Repeats</button>
         </div>
         <div id="today-repeats-content" class="mt-1"></div>
     `;
     container.innerHTML = titleHtml + activityContentHtml + notesBoxHtml + paceCalculatorHtml;
+    
     const todayCard = document.getElementById('todays-training-card');
     if (todayCard) {
         todayCard.classList.add('custom-rect-border');
-        todayCard.style.borderLeftWidth = '3px'; // Ensure it matches custom-rect-border
-        // The original border-left-color: #0ea5e9 is overridden by !important in custom-rect-border
     }
-
 
     if (marathonPlan && marathonPlan.settings) {
         renderTodayPaces(marathonPlan.settings.defaultLt2Speed);
@@ -1148,7 +1181,7 @@ function renderOverview() {
     const uiTextOverview = marathonPlan.uiText.overview; 
     overviewSection.innerHTML = `
         <div class="md:flex md:space-x-6 space-y-6 md:space-y-0 mb-6">
-            <div id="todays-training-card" class="content-card p-4 md:flex-1">
+            <div id="todays-training-card" class="content-card p-4 md:flex-1"> 
                 <div id="todays-training-content"></div> 
             </div>
             <div id="this-weeks-plan-card" class="content-card p-4 md:flex-1">
