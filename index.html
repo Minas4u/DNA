@@ -174,22 +174,24 @@
         
         #installPwaButton {
             background-color: #0284c7; 
-            color: #f59e0b; 
+            color: white; 
             font-weight: 600;
+            border: 2px solid #f59e0b; 
         }
         #installPwaButton:hover {
             background-color: #0369a1; 
-            color: #d97706; 
+            border-color: #d97706; 
         }
 
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background-color: #e5e7eb; border: 1px solid #e5e7eb; }
         .calendar-header { 
             text-align: center; 
             padding: 0.5rem; 
-            background-color: #ccdbfd; 
+            background-color: #e0e7ff; 
             font-weight: 600; 
             font-size: 0.875rem; 
             color: #3730a3; 
+            border: 1px solid #c7d2fe;
         }
         .calendar-day { background-color: #fff; padding: 0.5rem; min-height: 100px; font-size: 0.75rem; border: 1px solid #f3f4f6; cursor: default; }
         .calendar-day.has-activity { cursor: pointer; }
@@ -205,17 +207,35 @@
             font-size: 0.7rem;
         }
         .activity-thumbnail-easy { background-color: #e0f2fe; color: #0c4a6e; } 
-        .activity-thumbnail-easy-green { background-color: #d9ffd9; color: #006400; } 
-        .activity-thumbnail-fartlek { background-color: #ffd9d9; color: #990000; } 
+        .activity-thumbnail-easy-green { background-color: #dcfce7; color: #15803d; } 
+        .activity-thumbnail-fartlek { background-color: #fee2e2; color: #b91c1c; } 
         .activity-thumbnail-tempo { background-color: #ffedd5; color: #c2410c; } 
-        .activity-thumbnail-interval { background-color: #fee2e2; color: #b91c1c; } 
+        .activity-thumbnail-interval { background-color: #fecaca; color: #991b1b; } 
         .activity-thumbnail-long { background-color: #f3e8ff; color: #7e22ce; } 
         .activity-thumbnail-race { background-color: #fce7f3; color: #be185d; } 
         .activity-thumbnail-rest { background-color: #f1f5f9; color: #475569; } 
         .activity-thumbnail-default { background-color: #e0f2fe; color: #0c4a6e; } 
 
-        #todays-training-card { border-left: 4px solid #0ea5e9; } 
-        #this-weeks-plan-card { border-left: 4px solid #10b981; } 
+        .custom-rect-border {
+            border-top: 3px solid #0284c7;    /* Blue */
+            border-right: 3px solid #0284c7;   /* Blue */
+            border-bottom: 3px solid #f59e0b; /* Yellow */
+            border-left: 3px solid #f59e0b;    /* Yellow */
+            padding-bottom: 1rem; /* Existing nav padding-bottom was pb-4 (1rem), adjust if needed */
+        }
+        /* Remove default border from nav if custom-rect-border is applied */
+        nav.custom-rect-border {
+            border-bottom-width: 3px !important; /* Override Tailwind's border-b */
+            border-bottom-color: #f59e0b !important;
+        }
+
+        #todays-training-card.custom-rect-border {
+             border-left-color: #f59e0b !important; 
+             border-bottom-color: #f59e0b !important;
+             border-top-color: #0284c7 !important;
+             border-right-color: #0284c7 !important;
+             border-width: 3px !important; /* Ensure all sides are 3px */
+        }
         
         .main-title {
             font-weight: 800; 
@@ -227,41 +247,7 @@
         .title-marathon {
             color: #0284c7; 
         }
-        .time-point-label {
-            font-weight: 500;
-            color: #075985; 
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem; 
-            background-color: #e0f2fe; 
-            text-align: center;
-            border: 1px solid #7dd3fc; 
-        }
-        .result-default { color: #374151; } 
-        .result-blue {
-            background-color: #cfe2ff; 
-            border-left-width: 4px;
-            border-color: #3b82f6; 
-            color: #1e3a8a; 
-        }
-        .result-yellow {
-            background-color: #fef9c3; 
-            border-left-width: 4px;
-            border-color: #facc15; 
-            color: #713f12; 
-        }
-        .result-red {
-            background-color: #fee2e2; 
-            border-left-width: 4px;
-            border-color: #f87171; 
-            color: #7f1d1d; 
-        }
-        .error-display {
-            background-color: #fecaca; 
-            border-left-width: 4px;
-            border-color: #ef4444; 
-            color: #7f1d1d; 
-        }
-        
+       
         .loader {
             border: 4px solid #f3f3f3; 
             border-top: 4px solid #3b82f6; 
@@ -308,6 +294,21 @@
         .calendar-nav-button svg {
             width: 1.25rem; 
             height: 1.25rem; 
+        }
+
+        #toggleRepeatsButton {
+            background-color: #0284c7; /* Blue background */
+            color: white;              /* White text */
+            border: 2px solid #f59e0b; /* Yellow border */
+            padding: 0.3rem 0.8rem;   /* Slightly larger padding */
+            font-size: 0.85rem;        /* Slightly larger font */
+            font-weight: 500;
+            border-radius: 0.375rem; /* Standard rounded corners */
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        #toggleRepeatsButton:hover {
+            background-color: #0369a1; /* Darker blue */
+            border-color: #d97706; /* Darker yellow */
         }
 
 
@@ -397,13 +398,12 @@
             #main-app-wrapper > nav,
             #calendar-controls, 
             .calendar-grid, 
-            #todays-training-card, 
+            /* #todays-training-card, */ /* Keep this visible if it's the target for printing */
             #this-weeks-plan-card, 
             #mileageChart, 
             #training-plan-content .chart-container, 
             .chart-container p,
             #calendar-selected-day-header, 
-            #raceDateInputContainer, 
             #raceElevationChartContainer,
             #phase-navigation, 
             #phase-details > .content-card > h3:not(.phase-title-style), 
@@ -438,9 +438,13 @@
         .today-pace-table th.header-average { color: #16a34a; } 
         .today-pace-table th.header-high { color: #dc2626; } 
 
-        .today-pace-table td:first-child { 
-            font-weight: 500;
+        .today-pace-table td { 
+            font-weight: 600;
         }
+        .today-pace-table td:first-child { 
+            font-weight: 500; 
+        }
+
         .todays-activity-box {
             border: 1px solid #e5e7eb; 
             background-color: #ffffff; 
@@ -512,7 +516,7 @@
             </h1>
         </header>
         <div class="space-y-4">
-            <button id="installPwaButton" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hidden mb-4">
+            <button id="installPwaButton" class="w-full flex justify-center py-2 px-4 border-transparent rounded-md shadow-sm text-sm font-medium hidden mb-4">
                 Install App
             </button>
             <div>
@@ -549,7 +553,7 @@
             </p>
         </header>
 
-        <nav class="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4 border-b border-stone-300 pb-4">
+        <nav class="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4 pb-4 custom-rect-border">
             <button id="nav-overview" class="nav-button active-overview">{NAV_OVERVIEW_TEXT}</button>
             <button id="nav-news" class="nav-button">{NAV_NEWS_TEXT}</button>
             <button id="nav-plan" class="nav-button">{NAV_PLAN_TEXT}</button>
@@ -576,13 +580,12 @@ let currentWebAppUrl = '';
 let deferredInstallPrompt = null;
 
 const userSpecificDataSources = {
-    "ADMIN": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec", // Updated ADMIN URL
+    "ADMIN": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec", 
     "USER_HELIOS": "https://script.google.com/macros/s/AKfycbwcdAtQXpojQk4_jtn4pHoZm2JQihJaYMogcJZJNJLX46ILP0zODpuPyVi0b5n9wLeG7w/exec", 
     "USER_APOLLO": "YOUR_APPS_SCRIPT_URL_FOR_APOLLO_SHEET_HERE", 
-    "RUN1": "https://script.google.com/macros/s/AKfycbxhDm83dwQi8K-JxWf8JbadOe7aUvk020UlDjlnRcgwq2AVHq5ZiZtpdeN8ZCAmoJK8_w/exec",
-    "ADMINX": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec"
-}
-
+    "RUN1": "https://script.google.com/macros/s/AKfycbwQjIzVstR_B86qSsSkfH0mPZYFLyCa7Edwwpa7NZdwhUQP8t5vRtOtgSNfPy5RPMiWdw/exec",
+    "ADMINX": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec" 
+};
 
 let marathonPlan = null; 
 let datedTrainingPlan = []; 
@@ -600,7 +603,6 @@ const loginErrorMessageDiv = document.getElementById('login-error-message');
 const loginLoadingMessageDiv = document.getElementById('login-loading-message');
 const installPwaButton = document.getElementById('installPwaButton');
 
-// --- Pace Utility Functions (Restored) ---
 function parsePaceToSeconds(paceString) { 
     if (!paceString || typeof paceString !== 'string') return NaN;
     const parts = paceString.trim().split(':'); if (parts.length !== 2) return NaN;
@@ -663,14 +665,14 @@ async function fetchMarathonPlan(webAppUrlToUse) {
         if (data.error) {
             throw new Error(`Error from Google Sheet App: ${data.error}`);
         }
-        // Updated validation: Removed philosophy, expects newsSection array
+        
         if (!data.uiText || typeof data.uiText !== 'object' ||
             !data.settings || !data.settings.zones || !Array.isArray(data.settings.zones) || 
             !data.settings.hasOwnProperty('defaultLt2Speed') ||
             !data.settings.hasOwnProperty('raceName') || 
-            !data.settings.hasOwnProperty('raceDate') || 
+            !data.settings.hasOwnProperty('planStartDate') || 
             !data.settings.hasOwnProperty('raceDistanceKm') || 
-            !data.newsSection || !Array.isArray(data.newsSection) || // Validates newsSection
+            !data.newsSection || !Array.isArray(data.newsSection) || 
             !data.paceGuide || !data.paceGuide.title || !Array.isArray(data.paceGuide.paces) ||
             !data.generalNotes || !data.generalNotes.title || !Array.isArray(data.generalNotes.notes) ||
             !Array.isArray(data.phases) || 
@@ -679,25 +681,34 @@ async function fetchMarathonPlan(webAppUrlToUse) {
             !data.raceTactics || typeof data.raceTactics !== 'object' 
             ) {
             console.error("Fetched data structure validation failed. Data:", data);
-            throw new Error("Fetched data incomplete or malformed. Check Apps Script doGet & Sheet structure. Ensure 'newsSection' is an array and 'philosophy' is removed from root if not intended.");
+            throw new Error("Fetched data incomplete or malformed. Check Apps Script doGet & Sheet structure. Ensure 'newsSection' is an array and 'planStartDate' is present.");
         }
         marathonPlan = data; 
         updateStaticUIText();
 
-        let raceDateToUse = DEFAULT_RACE_DATE_STRING;
-        if (marathonPlan.settings && marathonPlan.settings.raceDate && isValidDate(new Date(marathonPlan.settings.raceDate + 'T00:00:00'))) {
-            raceDateToUse = marathonPlan.settings.raceDate;
-        } else {
-            const storedRaceDate = localStorage.getItem('marathonRaceDate');
-            if (storedRaceDate && isValidDate(new Date(storedRaceDate + 'T00:00:00'))) {
-                raceDateToUse = storedRaceDate;
-            }
+        const planStartDateString = marathonPlan.settings.planStartDate;
+        if (!planStartDateString || !isValidDate(new Date(planStartDateString + "T00:00:00"))) {
+            throw new Error("Invalid or missing 'planStartDate' in settings from Google Sheet.");
         }
-        currentRaceDate = new Date(raceDateToUse + 'T00:00:00');
-        localStorage.setItem('marathonRaceDate', raceDateToUse); 
+        const planStartDate = new Date(planStartDateString + "T00:00:00");
+
+        let totalDaysInPlan = 0;
+        marathonPlan.phases.forEach(phase => {
+            phase.weeks.forEach(week => {
+                totalDaysInPlan += week.days.length;
+            });
+        });
+
+        if (totalDaysInPlan === 0) {
+            throw new Error("Training plan has no scheduled days. Check 'Full Training Plan' sheet.");
+        }
+
+        const planEndDate = addDays(new Date(planStartDate), totalDaysInPlan - 1);
+        currentRaceDate = planEndDate; 
         
         calculateAndStoreDatedTrainingPlan(currentRaceDate);
-        calendarCurrentDisplayDate = new Date(); 
+        
+        calendarCurrentDisplayDate = new Date(planStartDate); 
         calendarCurrentDisplayDate.setDate(1); 
         return true; 
     } catch (error) {
@@ -787,12 +798,10 @@ function isSameDay(date1, date2) {
            date1.getDate() === date2.getDate();
 }
 
-function calculateAndStoreDatedTrainingPlan(raceDateInput) {
-    if (!marathonPlan || !marathonPlan.phases || !isValidDate(raceDateInput)) {
+function calculateAndStoreDatedTrainingPlan(planEndDate) { 
+    if (!marathonPlan || !marathonPlan.phases || !isValidDate(planEndDate)) {
         datedTrainingPlan = []; return; 
     }
-    currentRaceDate = new Date(raceDateInput); 
-    localStorage.setItem('marathonRaceDate', currentRaceDate.toISOString().split('T')[0]); 
     let allDaysScheduled = [];
     marathonPlan.phases.forEach(phase => {
         phase.weeks.forEach(week => {
@@ -803,7 +812,7 @@ function calculateAndStoreDatedTrainingPlan(raceDateInput) {
         });
     });
     datedTrainingPlan = [];
-    let tempCurrentDate = new Date(currentRaceDate); 
+    let tempCurrentDate = new Date(planEndDate); 
     for (let i = allDaysScheduled.length - 1; i >= 0; i--) {
         datedTrainingPlan.unshift({ date: new Date(tempCurrentDate), ...allDaysScheduled[i] });
         tempCurrentDate = addDays(tempCurrentDate, -1); 
@@ -813,21 +822,32 @@ function calculateAndStoreDatedTrainingPlan(raceDateInput) {
 function renderTodayPaces(lt2PaceString) {
     const zonesContainer = document.getElementById('today-zones-content');
     const repeatsContainer = document.getElementById('today-repeats-content');
-    if (!zonesContainer || !repeatsContainer ) { 
+    const toggleRepeatsButton = document.getElementById('toggleRepeatsButton');
+
+    if (!zonesContainer || !repeatsContainer || !toggleRepeatsButton) { 
         if(zonesContainer) zonesContainer.innerHTML = `<p class="text-xs text-red-500 italic">UI error for pace display.</p>`;
         return;
     }
+
     if (!lt2PaceString || lt2PaceString === "N/A") {
         zonesContainer.innerHTML = `<p class="text-xs text-stone-500 italic">Set Default LT2 Speed in Settings sheet to see paces.</p>`;
         repeatsContainer.innerHTML = ''; 
+        toggleRepeatsButton.classList.add('hidden');
         return;
     }
-    const lt2SpeedInSeconds = parsePaceToSeconds(lt2PaceString); // This function was restored
+    const lt2SpeedInSeconds = parsePaceToSeconds(lt2PaceString); 
     if (isNaN(lt2SpeedInSeconds) || lt2SpeedInSeconds <= 0) {
         zonesContainer.innerHTML = `<p class="text-xs text-red-500 italic">Invalid LT2 speed format in Settings ('${lt2PaceString}'). Use mm:ss.</p>`;
         repeatsContainer.innerHTML = '';
+        toggleRepeatsButton.classList.add('hidden');
         return;
     }
+    
+    toggleRepeatsButton.classList.remove('hidden');
+    toggleRepeatsButton.textContent = 'Show Repeats'; 
+    const repeatsTableId = 'today-repeats-table';
+
+
     const zonesData = [
         { name: "Z1", descriptor: "Easy/Rec", lowPaceFactor: 1.54, highPaceFactor: 1.33, colorClass: "text-green-600" },
         { name: "Z2", descriptor: "Aerobic", lowPaceFactor: 1.32, highPaceFactor: 1.16, colorClass: "text-sky-600" },
@@ -848,10 +868,10 @@ function renderTodayPaces(lt2PaceString) {
         const avgPS = (sPS + fPS) / 2; 
         zonesTableHtml += `<tr>
                              <td class="${zone.colorClass} font-semibold">${zone.name}</td>
-                             <td>${formatSecondsToPace(sPS)} - ${formatSecondsToPace(fPS)}</td>
-                             <td>${formatSecondsToPace(sPS)}</td>
-                             <td>${formatSecondsToPace(avgPS)}</td>
-                             <td>${formatSecondsToPace(fPS)}</td>
+                             <td class="font-bold">${formatSecondsToPace(sPS)} - ${formatSecondsToPace(fPS)}</td>
+                             <td class="font-bold">${formatSecondsToPace(sPS)}</td>
+                             <td class="font-bold">${formatSecondsToPace(avgPS)}</td>
+                             <td class="font-bold">${formatSecondsToPace(fPS)}</td>
                            </tr>`;
     });
     zonesTableHtml += `</tbody></table>`;
@@ -861,14 +881,22 @@ function renderTodayPaces(lt2PaceString) {
         {d:"3km",f:1.02,m:3},{d:"1 Mile",f:0.98,m:1.60934},{d:"1km",f:0.95,m:1},
         {d:"800m",f:0.92,m:0.8},{d:"400m",f:0.88,m:0.4},{d:"200m",f:0.85,m:0.2}
     ];
-    let repeatsTableHtml = `<table class="today-pace-table mt-2"><thead><tr><th>Dist.</th><th>Time</th><th>Pace/km</th></tr></thead><tbody></tbody>`;
+    let repeatsTableHtml = `<table id="${repeatsTableId}" class="today-pace-table mt-1 hidden"><thead><tr><th>Dist.</th><th>Time</th><th>Pace/km</th></tr></thead><tbody>`;
     repeatDistances.forEach(item => {
         const tPPS = lt2SpeedInSeconds * item.f; 
         const tTDS = tPPS * item.m; 
-        repeatsTableHtml += `<tr><td class="text-teal-700 font-semibold">${item.d}</td><td>${formatSecondsToPace(tTDS)}</td><td>${formatSecondsToPace(tPPS)}</td></tr>`;
+        repeatsTableHtml += `<tr><td class="text-teal-700 font-semibold">${item.d}</td><td class="font-bold">${formatSecondsToPace(tTDS)}</td><td class="font-bold">${formatSecondsToPace(tPPS)}</td></tr>`;
     });
     repeatsTableHtml += `</tbody></table>`;
     repeatsContainer.innerHTML = repeatsTableHtml;
+
+    toggleRepeatsButton.onclick = function() {
+        const table = document.getElementById(repeatsTableId);
+        if (table) {
+            table.classList.toggle('hidden');
+            toggleRepeatsButton.textContent = table.classList.contains('hidden') ? 'Show Repeats' : 'Hide Repeats';
+        }
+    };
 }
 
 function renderTodaysTraining() {
@@ -877,11 +905,16 @@ function renderTodaysTraining() {
         if(container) container.innerHTML = "<p>Loading today's training data...</p>"; 
         return;
     }
-    if (!currentRaceDate) {
-        container.innerHTML = `<p class="text-sm text-sky-700">Set race date in <button onclick="document.getElementById('nav-calendar').click();" class="underline font-semibold">${marathonPlan.uiText.navButtonCalendar || 'Calendar'}</button> for today's training. Default: ${DEFAULT_RACE_DATE_STRING}.</p>`;
-        return;
+    if (datedTrainingPlan.length === 0 && marathonPlan.settings.planStartDate && marathonPlan) {
+        const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
+        let totalDaysInPlan = 0;
+        marathonPlan.phases.forEach(phase => phase.weeks.forEach(week => totalDaysInPlan += week.days.length));
+        if (totalDaysInPlan > 0 && isValidDate(planStartDate)) {
+            const planEndDate = addDays(new Date(planStartDate), totalDaysInPlan - 1);
+            calculateAndStoreDatedTrainingPlan(planEndDate);
+        }
     }
-    if (datedTrainingPlan.length === 0 && currentRaceDate && marathonPlan) calculateAndStoreDatedTrainingPlan(currentRaceDate);
+    
     const today = new Date(); 
     today.setHours(0,0,0,0); 
     const todaysActivity = datedTrainingPlan.find(item => {
@@ -911,24 +944,45 @@ function renderTodaysTraining() {
             `;
         }
     } else { 
-        activityContentHtml = `<div class="todays-activity-box"><p class="text-stone-700">No training scheduled for today based on race date (${formatDate(currentRaceDate)}), or outside plan duration.</p><p class="text-sm text-stone-600">This might be rest or before/after plan.</p></div>`;
+        let message = "No training scheduled for today.";
+        if (marathonPlan && marathonPlan.settings && marathonPlan.settings.planStartDate) {
+            const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
+            if (isValidDate(planStartDate) && today < planStartDate) {
+                message = `Plan starts on ${formatDate(planStartDate)}. No training scheduled yet.`;
+            } else if (currentRaceDate && isValidDate(currentRaceDate) && today > currentRaceDate) { // currentRaceDate is plan end date
+                 message = `Plan ended on ${formatDate(currentRaceDate)}. No training scheduled.`;
+            }
+        }
+        activityContentHtml = `<div class="todays-activity-box"><p class="text-stone-700">${message}</p></div>`;
     }
 
     const paceCalculatorHtml = `
         <h3 class="text-lg font-semibold mt-4" style="color: #0284c7;">Zones</h3> 
         <div id="today-zones-content"></div> 
-        <h3 class="text-lg font-semibold mt-3" style="color: #f59e0b;">Repeats</h3> 
+        <div class="mt-3 mb-1 flex justify-between items-center">
+             <h3 class="text-lg font-semibold" style="color: #f59e0b;">Repeats</h3>
+             <button id="toggleRepeatsButton" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-2 py-1 rounded hidden">Show Repeats</button>
+        </div>
         <div id="today-repeats-content" class="mt-1"></div>
     `;
     container.innerHTML = titleHtml + activityContentHtml + notesBoxHtml + paceCalculatorHtml;
+    const todayCard = document.getElementById('todays-training-card');
+    if (todayCard) {
+        todayCard.classList.add('custom-rect-border');
+        todayCard.style.borderLeftWidth = '3px'; // Ensure it matches custom-rect-border
+        // The original border-left-color: #0ea5e9 is overridden by !important in custom-rect-border
+    }
+
 
     if (marathonPlan && marathonPlan.settings) {
         renderTodayPaces(marathonPlan.settings.defaultLt2Speed);
     } else { 
         const zonesContainer = document.getElementById('today-zones-content');
         const repeatsContainer = document.getElementById('today-repeats-content');
+        const toggleBtn = document.getElementById('toggleRepeatsButton');
         if(zonesContainer) zonesContainer.innerHTML = `<p class="text-xs text-stone-500 italic">Loading pace data...</p>`;
         if(repeatsContainer) repeatsContainer.innerHTML = '';
+        if(toggleBtn) toggleBtn.classList.add('hidden');
     }
 }
 
@@ -939,11 +993,20 @@ function renderThisWeeksPlan() {
         return;
     }
     const thisWeeksPlanTitle = marathonPlan.uiText.overview.thisWeeksPlanTitle || "This Week"; 
-    if (!currentRaceDate) {
-        container.innerHTML = `<p class="text-sm text-sky-700">Set race date in <button onclick="document.getElementById('nav-calendar').click();" class="underline font-semibold">${marathonPlan.uiText.navButtonCalendar || 'Calendar'}</button> for this week's plan.</p>`;
+    if (datedTrainingPlan.length === 0 && marathonPlan.settings.planStartDate && marathonPlan) {
+        const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
+        let totalDaysInPlan = 0;
+        marathonPlan.phases.forEach(phase => phase.weeks.forEach(week => totalDaysInPlan += week.days.length));
+        if (totalDaysInPlan > 0 && isValidDate(planStartDate)) {
+            const planEndDate = addDays(new Date(planStartDate), totalDaysInPlan - 1);
+            calculateAndStoreDatedTrainingPlan(planEndDate);
+        }
+    }
+    if (datedTrainingPlan.length === 0) {
+         container.innerHTML = `<h3 class="text-2xl font-semibold text-green-700 mb-1 text-center">${thisWeeksPlanTitle}</h3><p class="text-stone-600 text-center">Training plan not loaded or is empty.</p>`;
         return;
     }
-    if (datedTrainingPlan.length === 0 && currentRaceDate && marathonPlan) calculateAndStoreDatedTrainingPlan(currentRaceDate);
+
 
     const today = new Date();
     const dayOfWeek = today.getDay(); 
@@ -1300,7 +1363,7 @@ function renderPhaseDetails(phaseIndex) {
 }
 
 function getWeekDateRangeString(weekObject, phaseName) {
-    if (!datedTrainingPlan || datedTrainingPlan.length === 0 || !currentRaceDate) {
+    if (!datedTrainingPlan || datedTrainingPlan.length === 0 ) { 
         return `Week ${weekObject.weekNum}`;
     }
     const activitiesInThisWeek = datedTrainingPlan.filter(dayActivity => 
@@ -1390,7 +1453,6 @@ function renderCalendarTab() {
     appContent.innerHTML = ''; 
     const calendarSection = document.createElement('section');
     calendarSection.id = "calendar-content"; calendarSection.className = "space-y-6";
-    const raceDateValue = currentRaceDate ? currentRaceDate.toISOString().split('T')[0] : DEFAULT_RACE_DATE_STRING;
     const uiText = marathonPlan.uiText.calendar; 
     calendarSection.innerHTML = `
         <div class="content-card overview-section-card">
@@ -1411,29 +1473,21 @@ function renderCalendarTab() {
                 </button>
             </div>
             <div id="calendar-grid-container" class="calendar-grid"></div>
-            <div id="raceDateInputContainer" class="mt-6 pt-4 border-t border-stone-200">
-                <label for="raceDateInput" class="block text-sm font-medium text-stone-700 mb-1">${uiText.raceDateLabel || 'Select Your Race Date:'}</label>
-                <input type="date" id="raceDateInput" name="raceDateInput" value="${raceDateValue}" class="mt-1 block w-full md:w-1/2 px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
-                <p class="text-xs text-stone-500 mt-1">${uiText.raceDateHelpText || 'Plan ends on this date.'}</p>
-            </div>
         </div>`;
     appContent.appendChild(calendarSection);
-    document.getElementById('raceDateInput').addEventListener('change', (event) => {
-        const newRaceDate = new Date(event.target.value + 'T00:00:00'); 
-        if (isValidDate(newRaceDate)) {
-            currentRaceDate = newRaceDate; 
-            calculateAndStoreDatedTrainingPlan(newRaceDate); 
-            calendarCurrentDisplayDate = new Date(newRaceDate.getFullYear(), newRaceDate.getMonth(), 1);
-            renderCalendarGrid(); 
-            document.getElementById('calendar-day-details-content').innerHTML = ''; 
-            document.getElementById('calendar-selected-day-header').innerHTML = ''; 
-            if (document.getElementById('nav-overview').classList.contains('active-overview')) {
-                 renderOverview(); 
-            }
-        }
-    });
     document.getElementById('prevMonthBtn').addEventListener('click', () => { calendarCurrentDisplayDate.setMonth(calendarCurrentDisplayDate.getMonth() - 1); renderCalendarGrid(); document.getElementById('calendar-day-details-content').innerHTML = ''; document.getElementById('calendar-selected-day-header').innerHTML = ''; });
     document.getElementById('nextMonthBtn').addEventListener('click', () => { calendarCurrentDisplayDate.setMonth(calendarCurrentDisplayDate.getMonth() + 1); renderCalendarGrid(); document.getElementById('calendar-day-details-content').innerHTML = ''; document.getElementById('calendar-selected-day-header').innerHTML = ''; });
+    
+    if (marathonPlan && marathonPlan.settings && marathonPlan.settings.planStartDate) {
+        const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
+        if (isValidDate(planStartDate)) {
+            calendarCurrentDisplayDate = new Date(planStartDate.getFullYear(), planStartDate.getMonth(), 1);
+        }
+    } else {
+        calendarCurrentDisplayDate = new Date(); 
+        calendarCurrentDisplayDate.setDate(1);
+    }
+
     renderCalendarGrid(); 
     renderSelectedCalendarDayDetails(new Date()); 
 }
@@ -1517,7 +1571,7 @@ function renderRaceTab() {
 
     const uiTextRace = marathonPlan.uiText.race;
     const raceName = marathonPlan.settings.raceName || "N/A";
-    const raceDateFormatted = currentRaceDate ? formatDate(currentRaceDate) : (marathonPlan.settings.raceDate ? formatDate(new Date(marathonPlan.settings.raceDate + 'T00:00:00')) : "N/A");
+    const raceDateFormatted = currentRaceDate ? formatDate(currentRaceDate) : "N/A (Set Plan Start Date)"; 
     const raceDistance = marathonPlan.settings.raceDistanceKm || "N/A";
 
     let tacticsHtml = `<h3 class="text-xl font-semibold text-violet-700 mb-3">${uiTextRace.tacticsTitle || "Race Strategy & Tactics"}</h3>`;
@@ -1546,7 +1600,7 @@ function renderRaceTab() {
             <div class="mb-6 p-4 bg-violet-50 rounded-lg shadow race-section-card">
                 <h3 class="text-xl font-semibold text-violet-600 mb-2 pb-1 border-b-2 border-violet-500">${uiTextRace.raceDetailsTitle || "Race Details"}</h3>
                 <p class="text-lg"><strong class="text-violet-600 font-semibold">${uiTextRace.raceNameLabel || "Race:"}</strong> <span class="text-stone-700 font-bold">${raceName}</span></p>
-                <p class="text-lg"><strong class="text-violet-600 font-semibold">${uiTextRace.raceDateLabel || "Date:"}</strong> <span class="text-stone-700 font-bold">${raceDateFormatted}</span></p>
+                <p class="text-lg"><strong class="text-violet-600 font-semibold">${uiTextRace.raceDateLabel || "Date:"}</strong> <span class="text-stone-700 font-bold">${raceDateFormatted}</span> (Plan End Date)</p>
                 <p class="text-lg"><strong class="text-violet-600 font-semibold">${uiTextRace.raceDistanceLabel || "Distance:"}</strong> <span class="text-stone-700 font-bold">${raceDistance} km</span></p>
             </div>
 
