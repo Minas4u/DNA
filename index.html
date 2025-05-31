@@ -103,8 +103,9 @@
         .week-button-text-taper:not(.active):hover { background-color: #fee2e2; border-color: #fca5a5;}
         
         .content-card {
-            background-color: #fafaf9; padding: 1rem; 
-            border-radius: 0.5rem; border: 1px solid #e7e5e4; 
+            background-color: #fafaf9; 
+            padding: 1rem; 
+            border-radius: 0.5rem; 
         }
         .content-card h3.phase-title-style { margin-bottom: 0.5rem; } 
         
@@ -163,19 +164,18 @@
             box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3); 
         }
         
-        /* Updated CSS Logo Styles */
         .css-logo-dna {
             font-family: 'Ubuntu', sans-serif;
-            font-weight: 700; /* Bold */
-            font-size: 3.75rem; /* Tailwind text-6xl */
+            font-weight: 700; 
+            font-size: 3.75rem; 
             line-height: 1;
             text-align: center; 
             padding: 0.5rem 0.75rem; 
             display: inline-block; 
-            border-top: 3px solid #f59e0b;    /* Yellow */
-            border-right: 3px solid #0284c7;  /* Blue */
-            border-bottom: 3px solid #0284c7; /* Blue */
-            border-left: 3px solid #f59e0b;   /* Yellow */
+            border-top: 3px solid #f59e0b;    
+            border-right: 3px solid #0284c7;  
+            border-bottom: 3px solid #0284c7; 
+            border-left: 3px solid #f59e0b;   
             margin-bottom: 0.75rem; 
         }
         @media (min-width: 640px) {
@@ -184,17 +184,19 @@
                 padding: 0.75rem 1rem; 
             }
         }
-        .css-logo-dna .logo-d { 
-            color: #0284c7; /* Blue */
+        .css-logo-dna .logo-d,
+        .css-logo-dna .logo-n-blue-part { 
+            color: #0284c7; 
         }
         .css-logo-dna .logo-n { 
             background: linear-gradient(to bottom, #0284c7 50%, #f59e0b 50%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            display: inline-block; 
         }
         .css-logo-dna .logo-a { 
-            color: #f59e0b; /* Yellow */
+            color: #f59e0b; 
         }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -257,15 +259,12 @@
             padding-bottom: 1rem; 
         }
         nav.custom-rect-border {
-            /* Ensure these override Tailwind if necessary */
-            border-bottom-width: 3px !important; 
-            border-bottom-color: #0284c7 !important;
-            border-right-width: 3px !important;
-            border-right-color: #0284c7 !important;
-            border-top-width: 3px !important;
-            border-top-color: #f59e0b !important;
-            border-left-width: 3px !important;
-            border-left-color: #f59e0b !important;
+            border-width: 3px !important; 
+            border-style: solid !important;
+            border-top-color: #f59e0b !important;    
+            border-right-color: #0284c7 !important;  
+            border-bottom-color: #0284c7 !important; 
+            border-left-color: #f59e0b !important;   
         }
 
         #todays-training-card.custom-rect-border {
@@ -274,6 +273,7 @@
              border-top-color: #f59e0b !important;
              border-right-color: #0284c7 !important;
              border-width: 3px !important; 
+             border-style: solid !important;
         }
         
         .main-title {
@@ -339,15 +339,35 @@
             background-color: #0284c7; 
             color: white;              
             border: 2px solid #f59e0b; 
-            padding: 0.3rem 0.8rem;   
-            font-size: 0.85rem;        
-            font-weight: 500;
+            padding: 0.4rem 0.9rem;   
+            font-size: 0.9rem;        
+            font-weight: 600;          
             border-radius: 0.375rem; 
             transition: background-color 0.2s, border-color 0.2s;
         }
         #toggleRepeatsButton:hover {
             background-color: #0369a1; 
             border-color: #d97706; 
+        }
+
+        /* Today's Training Card - Activity Text Color Classes */
+        .activity-text-easy { color: #16a34a !important; /* Dark Green */ }
+        .activity-text-recovery { color: #075985 !important; /* Dark Blue */ }
+        /* .activity-text-base { color: #1e40af !important; } */ /* Default text color will be used for Base or specific if needed */
+        .activity-text-tempo { color: #b45309 !important; /* Dark Brown/Orange */ }
+        .activity-text-interval, .activity-text-intervals { color: #991b1b !important; /* Dark Red */ }
+        .activity-text-fartlek { color: #831843 !important; /* Darker Fuchsia/Maroon */ }
+        .activity-text-str, .activity-text-hills { color: #713f12 !important; /* Dark Brown */ }
+        .activity-text-rest { color: #374151 !important; /* Dark Grey */ }
+        .activity-text-zone, .activity-text-race { color: #5b21b6 !important; /* Dark Purple */ }
+        .activity-text-double { color: #78350f !important; /* Dark Brown */ }
+        .activity-text-mobility { color: #713f12 !important; /* Dark Brown */ }
+        
+        /* Today's Training Card - Highlight for specific zone/pace in table */
+        .highlight-zone-pace {
+            background-color: #f59e0b !important; /* Yellow like 'project' */
+            color: #1e293b !important; /* Dark text for contrast on yellow */
+            font-weight: bold !important;
         }
 
 
@@ -484,17 +504,17 @@
         }
 
         .todays-activity-box {
-            border: 1px solid #e5e7eb; 
-            background-color: #ffffff; 
             padding: 0.75rem; 
             border-radius: 0.375rem; 
             margin-top: 0.5rem; 
+            border: 1px solid #e5e7eb; /* Default border for the box */
+            background-color: #ffffff; /* Default background for the box */
         }
         .todays-activity-box p strong.activity-text { 
             font-weight: 600; 
-            color: #0369a1; 
             font-size: 1.25rem; 
             line-height: 1.6; 
+            /* Default color will be inherited or set by specific activity class */
         }
         .todays-weekly-notes-box {
             border: 1px solid #e5e7eb; 
@@ -851,7 +871,7 @@ function calculateAndStoreDatedTrainingPlan(planEndDate) {
     }
 }
 
-function renderTodayPaces(lt2PaceString) {
+function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) { 
     const zonesContainer = document.getElementById('today-zones-content');
     const repeatsContainer = document.getElementById('today-repeats-content');
     const toggleRepeatsButton = document.getElementById('toggleRepeatsButton');
@@ -909,6 +929,36 @@ function renderTodayPaces(lt2PaceString) {
     zonesTableHtml += `</tbody></table>`;
     zonesContainer.innerHTML = zonesTableHtml;
 
+    const paceTable = zonesContainer.querySelector('table');
+    if (paceTable) {
+        paceTable.querySelectorAll('td').forEach(td => td.classList.remove('highlight-zone-pace'));
+
+        if (todaysActivityForHighlight && todaysActivityForHighlight.activity) {
+            const activityText = todaysActivityForHighlight.activity.replace(/^[^:]+:\s*/, '');
+            const match = activityText.match(/(Z[1-5])\s*\((Low|Average|High)\)/i);
+            if (match) {
+                const zoneToHighlight = match[1].toUpperCase(); 
+                const paceTypeToHighlight = match[2].toLowerCase(); 
+
+                const rows = paceTable.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    const zoneCell = row.cells[0];
+                    if (zoneCell && zoneCell.textContent.trim().toUpperCase() === zoneToHighlight) {
+                        let cellToHighlight;
+                        if (paceTypeToHighlight === 'low') cellToHighlight = row.cells[2];
+                        else if (paceTypeToHighlight === 'average') cellToHighlight = row.cells[3];
+                        else if (paceTypeToHighlight === 'high') cellToHighlight = row.cells[4];
+                        
+                        if (cellToHighlight) {
+                            cellToHighlight.classList.add('highlight-zone-pace');
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+
     const repeatDistances = [
         {d:"3km",f:1.02,m:3},{d:"1 Mile",f:0.98,m:1.60934},{d:"1km",f:0.95,m:1},
         {d:"800m",f:0.92,m:0.8},{d:"400m",f:0.88,m:0.4},{d:"200m",f:0.85,m:0.2}
@@ -959,15 +1009,31 @@ function renderTodaysTraining() {
     });
 
     let activityContentHtml = '';
+    // Default text colors for the card, will be overridden by dynamic classes if activity matches
     let titleHtml = `<h3 class="text-2xl font-semibold text-sky-700 mb-1 text-center">Today</h3>
                        <p class="text-xs text-stone-500 text-center mb-3">${formatDate(today, { weekday: 'long', month: 'long', day: 'numeric' })}</p>`;
     let notesBoxHtml = '';
+    const todayCard = document.getElementById('todays-training-card');
+
+    // Reset dynamic background and text color classes
+    const dynamicActivityTextClasses = [
+        'activity-text-easy', 'activity-text-recovery', 'activity-text-base', 'activity-text-tempo', 
+        'activity-text-interval', 'activity-text-intervals', 'activity-text-fartlek', 'activity-text-str', 
+        'activity-text-rest', 'activity-text-zone', 'activity-text-race', 'activity-text-double', 
+        'activity-text-hills', 'activity-text-mobility'
+    ];
+    
+    // Ensure the card has its base border and default content-card style
+    if (todayCard) {
+        todayCard.className = 'content-card p-4 md:flex-1 custom-rect-border'; // Reset to base classes
+    }
+
 
     if (todaysActivity) { 
-        let activityText = todaysActivity.activity.replace(/^[^:]+:\s*/, ''); 
+        let activityTextForDisplay = todaysActivity.activity.replace(/^[^:]+:\s*/, ''); 
         activityContentHtml = `
             <div class="todays-activity-box">
-                <p><strong class="activity-text">${activityText}</strong></p> 
+                <p><strong class="activity-text">${activityTextForDisplay}</strong></p> 
                 <p class="text-xs text-stone-500 mt-1">Phase: ${todaysActivity.phaseName} | Week: ${todaysActivity.weekNum}</p>
             </div>
         `;
@@ -978,6 +1044,36 @@ function renderTodaysTraining() {
                 </div>
             `;
         }
+
+        // Apply dynamic text color to the activity text
+        const activityTextElement = document.createElement('div'); // Temp div to parse and get the strong tag
+        activityTextElement.innerHTML = activityContentHtml;
+        const strongActivityText = activityTextElement.querySelector('.activity-text');
+
+        if (strongActivityText) {
+            dynamicActivityTextClasses.forEach(cls => strongActivityText.classList.remove(cls)); // Clear previous
+            const activityDescriptionOnly = todaysActivity.activity.replace(/^[^:]+:\s*/, '').trim();
+            const firstWord = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
+            
+            switch (firstWord) {
+                case 'easy': strongActivityText.classList.add('activity-text-easy'); break;
+                case 'recovery': strongActivityText.classList.add('activity-text-recovery'); break;
+                // case 'base': strongActivityText.classList.add('activity-text-base'); break; // Using default
+                case 'tempo': strongActivityText.classList.add('activity-text-tempo'); break;
+                case 'interval': 
+                case 'intervals': strongActivityText.classList.add('activity-text-interval'); break;
+                case 'fartlek': strongActivityText.classList.add('activity-text-fartlek'); break;
+                case 'str': strongActivityText.classList.add('activity-text-str'); break;
+                case 'rest': strongActivityText.classList.add('activity-text-rest'); break;
+                case 'zone': strongActivityText.classList.add('activity-text-zone'); break;
+                case 'race': strongActivityText.classList.add('activity-text-race'); break;
+                case 'double': strongActivityText.classList.add('activity-text-double'); break;
+                case 'hills': strongActivityText.classList.add('activity-text-hills'); break;
+                case 'mobility': strongActivityText.classList.add('activity-text-mobility'); break;
+            }
+            activityContentHtml = activityTextElement.innerHTML; // Get the modified HTML
+        }
+
     } else { 
         let message = "No training scheduled for today.";
         if (marathonPlan && marathonPlan.settings && marathonPlan.settings.planStartDate) {
@@ -992,23 +1088,20 @@ function renderTodaysTraining() {
     }
 
     const paceCalculatorHtml = `
-        <h3 class="text-lg font-semibold mt-4" style="color: #0284c7;">Zones</h3> 
+        <h3 class="text-lg font-semibold mt-4 text-sky-700">Zones</h3> 
         <div id="today-zones-content"></div> 
         <div class="mt-3 mb-1 flex justify-between items-center">
-             <h3 class="text-lg font-semibold" style="color: #f59e0b;">Repeats</h3>
+             <h3 class="text-lg font-semibold text-yellow-500">Repeats</h3>
              <button id="toggleRepeatsButton" class="hidden">Show Repeats</button>
         </div>
         <div id="today-repeats-content" class="mt-1"></div>
     `;
+    // Ensure the card itself has the custom border, but not dynamic background
     container.innerHTML = titleHtml + activityContentHtml + notesBoxHtml + paceCalculatorHtml;
     
-    const todayCard = document.getElementById('todays-training-card');
-    if (todayCard) {
-        todayCard.classList.add('custom-rect-border');
-    }
 
     if (marathonPlan && marathonPlan.settings) {
-        renderTodayPaces(marathonPlan.settings.defaultLt2Speed);
+        renderTodayPaces(marathonPlan.settings.defaultLt2Speed, todaysActivity); 
     } else { 
         const zonesContainer = document.getElementById('today-zones-content');
         const repeatsContainer = document.getElementById('today-repeats-content');
