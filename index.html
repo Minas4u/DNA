@@ -106,10 +106,11 @@
             background-color: #fafaf9; 
             padding: 1rem; 
             border-radius: 0.5rem; 
+            /* Default border removed, will be applied by specific border classes or default .overview-section-card etc. */
         }
         .content-card h3.phase-title-style { margin-bottom: 0.5rem; } 
         
-        .overview-section-card { 
+        .overview-section-card { /* Base for most cards not getting custom rect border */
             border-left-width: 4px;
             border-bottom-width: 4px;
             border-left-color: #0284c7; 
@@ -184,8 +185,7 @@
                 padding: 0.75rem 1rem; 
             }
         }
-        .css-logo-dna .logo-d,
-        .css-logo-dna .logo-n-blue-part { 
+        .css-logo-dna .logo-d { 
             color: #0284c7; 
         }
         .css-logo-dna .logo-n { 
@@ -251,29 +251,27 @@
         .activity-thumbnail-rest { background-color: #f1f5f9; color: #475569; } 
         .activity-thumbnail-default { background-color: #e0f2fe; color: #0c4a6e; } 
 
-        .custom-rect-border {
+        .custom-rect-border-nav { /* For nav tabs */
             border-top: 3px solid #f59e0b;    /* Yellow */
             border-right: 3px solid #0284c7;   /* Blue */
             border-bottom: 3px solid #0284c7; /* Blue */
             border-left: 3px solid #f59e0b;    /* Yellow */
-            padding-bottom: 1rem; 
-        }
-        nav.custom-rect-border {
-            border-width: 3px !important; 
+            padding: 0.75rem !important; /* Unified padding */
             border-style: solid !important;
-            border-top-color: #f59e0b !important;    
-            border-right-color: #0284c7 !important;  
-            border-bottom-color: #0284c7 !important; 
-            border-left-color: #f59e0b !important;   
         }
-
-        #todays-training-card.custom-rect-border {
-             border-left-color: #f59e0b !important; 
-             border-bottom-color: #0284c7 !important;
-             border-top-color: #f59e0b !important;
-             border-right-color: #0284c7 !important;
-             border-width: 3px !important; 
+        .custom-rect-border-today { /* For today's training card */
+             border-top: 3px solid #f59e0b !important;    /* Yellow */
+             border-right: 3px solid #0284c7 !important;   /* Blue */
+             border-bottom: 3px solid #0284c7 !important; /* Blue */
+             border-left: 3px solid #f59e0b !important;    /* Yellow */
              border-style: solid !important;
+        }
+        .custom-rect-border-this-week { /* For this week's plan card */
+            border-top: 3px solid #15803d !important;    /* Green */
+            border-left: 3px solid #15803d !important;   /* Green */
+            border-bottom: 3px solid #dc2626 !important; /* Red */
+            border-right: 3px solid #dc2626 !important;  /* Red */
+            border-style: solid !important;
         }
         
         .main-title {
@@ -351,22 +349,21 @@
         }
 
         /* Today's Training Card - Activity Text Color Classes */
-        .activity-text-easy { color: #16a34a !important; /* Dark Green */ }
-        .activity-text-recovery { color: #075985 !important; /* Dark Blue */ }
-        /* .activity-text-base { color: #1e40af !important; } */ /* Default text color will be used for Base or specific if needed */
-        .activity-text-tempo { color: #b45309 !important; /* Dark Brown/Orange */ }
-        .activity-text-interval, .activity-text-intervals { color: #991b1b !important; /* Dark Red */ }
-        .activity-text-fartlek { color: #831843 !important; /* Darker Fuchsia/Maroon */ }
-        .activity-text-str, .activity-text-hills { color: #713f12 !important; /* Dark Brown */ }
-        .activity-text-rest { color: #374151 !important; /* Dark Grey */ }
-        .activity-text-zone, .activity-text-race { color: #5b21b6 !important; /* Dark Purple */ }
-        .activity-text-double { color: #78350f !important; /* Dark Brown */ }
-        .activity-text-mobility { color: #713f12 !important; /* Dark Brown */ }
+        .activity-text-easy { color: #16a34a !important; }
+        .activity-text-recovery { color: #075985 !important; }
+        .activity-text-base { color: #1e40af !important; }
+        .activity-text-tempo { color: #b45309 !important; }
+        .activity-text-interval, .activity-text-intervals { color: #991b1b !important; }
+        .activity-text-fartlek { color: #831843 !important; }
+        .activity-text-str, .activity-text-hills { color: #713f12 !important; }
+        .activity-text-rest { color: #374151 !important; }
+        .activity-text-zone, .activity-text-race { color: #5b21b6 !important; }
+        .activity-text-double { color: #78350f !important; }
+        .activity-text-mobility { color: #713f12 !important; }
         
-        /* Today's Training Card - Highlight for specific zone/pace in table */
         .highlight-zone-pace {
-            background-color: #f59e0b !important; /* Yellow like 'project' */
-            color: #1e293b !important; /* Dark text for contrast on yellow */
+            background-color: #f59e0b !important; 
+            color: #1e293b !important; 
             font-weight: bold !important;
         }
 
@@ -507,14 +504,14 @@
             padding: 0.75rem; 
             border-radius: 0.375rem; 
             margin-top: 0.5rem; 
-            border: 1px solid #e5e7eb; /* Default border for the box */
-            background-color: #ffffff; /* Default background for the box */
+            border: 1px solid #e5e7eb; 
+            background-color: #ffffff; 
         }
         .todays-activity-box p strong.activity-text { 
             font-weight: 600; 
             font-size: 1.25rem; 
             line-height: 1.6; 
-            /* Default color will be inherited or set by specific activity class */
+            color: #0369a1; /* Default color, will be overridden by specific classes below */
         }
         .todays-weekly-notes-box {
             border: 1px solid #e5e7eb; 
@@ -605,7 +602,7 @@
             </p>
         </header>
 
-        <nav class="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4 pb-4 custom-rect-border">
+        <nav class="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4 pb-4 custom-rect-border-nav">
             <button id="nav-overview" class="nav-button active-overview">{NAV_OVERVIEW_TEXT}</button>
             <button id="nav-news" class="nav-button">{NAV_NEWS_TEXT}</button>
             <button id="nav-plan" class="nav-button">{NAV_PLAN_TEXT}</button>
@@ -935,8 +932,9 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
 
         if (todaysActivityForHighlight && todaysActivityForHighlight.activity) {
             const activityText = todaysActivityForHighlight.activity.replace(/^[^:]+:\s*/, '');
-            const match = activityText.match(/(Z[1-5])\s*\((Low|Average|High)\)/i);
-            if (match) {
+            const zoneRegex = /(Z[1-5])\s*\((Low|Average|High)\)/gi;
+            let match;
+            while ((match = zoneRegex.exec(activityText)) !== null) {
                 const zoneToHighlight = match[1].toUpperCase(); 
                 const paceTypeToHighlight = match[2].toLowerCase(); 
 
@@ -1009,23 +1007,24 @@ function renderTodaysTraining() {
     });
 
     let activityContentHtml = '';
-    // Default text colors for the card, will be overridden by dynamic classes if activity matches
+    // Reset default colors for heading and date, dynamic text color will be applied to activityText only
     let titleHtml = `<h3 class="text-2xl font-semibold text-sky-700 mb-1 text-center">Today</h3>
                        <p class="text-xs text-stone-500 text-center mb-3">${formatDate(today, { weekday: 'long', month: 'long', day: 'numeric' })}</p>`;
     let notesBoxHtml = '';
     const todayCard = document.getElementById('todays-training-card');
 
-    // Reset dynamic background and text color classes
-    const dynamicActivityTextClasses = [
-        'activity-text-easy', 'activity-text-recovery', 'activity-text-base', 'activity-text-tempo', 
-        'activity-text-interval', 'activity-text-intervals', 'activity-text-fartlek', 'activity-text-str', 
-        'activity-text-rest', 'activity-text-zone', 'activity-text-race', 'activity-text-double', 
-        'activity-text-hills', 'activity-text-mobility'
-    ];
-    
-    // Ensure the card has its base border and default content-card style
+    // Ensure the custom border is applied, and reset any dynamic background classes from previous renders
     if (todayCard) {
-        todayCard.className = 'content-card p-4 md:flex-1 custom-rect-border'; // Reset to base classes
+        const dynamicBgClasses = [ // List of old background classes to remove if any
+            'today-bg-easy', 'today-bg-recovery', 'today-bg-base', 'today-bg-tempo', 
+            'today-bg-interval', 'today-bg-fartlek', 'today-bg-str', 'today-bg-rest', 
+            'today-bg-zone', 'today-bg-race', 'today-bg-double', 'today-bg-hills', 'today-bg-mobility'
+        ];
+        dynamicBgClasses.forEach(cls => todayCard.classList.remove(cls));
+        todayCard.style.backgroundColor = ''; // Revert to default .content-card background
+        if (!todayCard.classList.contains('custom-rect-border-today')) { // Apply if not present
+            todayCard.classList.add('custom-rect-border-today');
+        }
     }
 
 
@@ -1044,36 +1043,7 @@ function renderTodaysTraining() {
                 </div>
             `;
         }
-
-        // Apply dynamic text color to the activity text
-        const activityTextElement = document.createElement('div'); // Temp div to parse and get the strong tag
-        activityTextElement.innerHTML = activityContentHtml;
-        const strongActivityText = activityTextElement.querySelector('.activity-text');
-
-        if (strongActivityText) {
-            dynamicActivityTextClasses.forEach(cls => strongActivityText.classList.remove(cls)); // Clear previous
-            const activityDescriptionOnly = todaysActivity.activity.replace(/^[^:]+:\s*/, '').trim();
-            const firstWord = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
-            
-            switch (firstWord) {
-                case 'easy': strongActivityText.classList.add('activity-text-easy'); break;
-                case 'recovery': strongActivityText.classList.add('activity-text-recovery'); break;
-                // case 'base': strongActivityText.classList.add('activity-text-base'); break; // Using default
-                case 'tempo': strongActivityText.classList.add('activity-text-tempo'); break;
-                case 'interval': 
-                case 'intervals': strongActivityText.classList.add('activity-text-interval'); break;
-                case 'fartlek': strongActivityText.classList.add('activity-text-fartlek'); break;
-                case 'str': strongActivityText.classList.add('activity-text-str'); break;
-                case 'rest': strongActivityText.classList.add('activity-text-rest'); break;
-                case 'zone': strongActivityText.classList.add('activity-text-zone'); break;
-                case 'race': strongActivityText.classList.add('activity-text-race'); break;
-                case 'double': strongActivityText.classList.add('activity-text-double'); break;
-                case 'hills': strongActivityText.classList.add('activity-text-hills'); break;
-                case 'mobility': strongActivityText.classList.add('activity-text-mobility'); break;
-            }
-            activityContentHtml = activityTextElement.innerHTML; // Get the modified HTML
-        }
-
+        
     } else { 
         let message = "No training scheduled for today.";
         if (marathonPlan && marathonPlan.settings && marathonPlan.settings.planStartDate) {
@@ -1096,8 +1066,42 @@ function renderTodaysTraining() {
         </div>
         <div id="today-repeats-content" class="mt-1"></div>
     `;
-    // Ensure the card itself has the custom border, but not dynamic background
     container.innerHTML = titleHtml + activityContentHtml + notesBoxHtml + paceCalculatorHtml;
+    
+    // Apply dynamic text color to the activity text after HTML is set
+    if (todaysActivity) {
+        const strongActivityTextElement = container.querySelector('.todays-activity-box .activity-text');
+        if (strongActivityTextElement) {
+            const dynamicActivityTextClasses = [
+                'activity-text-easy', 'activity-text-recovery', 'activity-text-base', 'activity-text-tempo', 
+                'activity-text-interval', 'activity-text-intervals', 'activity-text-fartlek', 'activity-text-str', 
+                'activity-text-rest', 'activity-text-zone', 'activity-text-race', 'activity-text-double', 
+                'activity-text-hills', 'activity-text-mobility'
+            ];
+            dynamicActivityTextClasses.forEach(cls => strongActivityTextElement.classList.remove(cls)); 
+            
+            const activityDescriptionOnly = todaysActivity.activity.replace(/^[^:]+:\s*/, '').trim();
+            const firstWord = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
+            
+            switch (firstWord) {
+                case 'easy': strongActivityTextElement.classList.add('activity-text-easy'); break;
+                case 'recovery': strongActivityTextElement.classList.add('activity-text-recovery'); break;
+                case 'base': strongActivityTextElement.classList.add('activity-text-base'); break; 
+                case 'tempo': strongActivityTextElement.classList.add('activity-text-tempo'); break;
+                case 'interval': 
+                case 'intervals': strongActivityTextElement.classList.add('activity-text-interval'); break;
+                case 'fartlek': strongActivityTextElement.classList.add('activity-text-fartlek'); break;
+                case 'str': strongActivityTextElement.classList.add('activity-text-str'); break;
+                case 'rest': strongActivityTextElement.classList.add('activity-text-rest'); break;
+                case 'zone': strongActivityTextElement.classList.add('activity-text-zone'); break;
+                case 'race': strongActivityTextElement.classList.add('activity-text-race'); break;
+                case 'double': strongActivityTextElement.classList.add('activity-text-double'); break;
+                case 'hills': strongActivityTextElement.classList.add('activity-text-hills'); break;
+                case 'mobility': strongActivityTextElement.classList.add('activity-text-mobility'); break;
+                default: strongActivityTextElement.style.color = ''; // Reset to default if no match
+            }
+        }
+    }
     
 
     if (marathonPlan && marathonPlan.settings) {
@@ -1131,6 +1135,12 @@ function renderThisWeeksPlan() {
     if (datedTrainingPlan.length === 0) {
          container.innerHTML = `<h3 class="text-2xl font-semibold text-green-700 mb-1 text-center">${thisWeeksPlanTitle}</h3><p class="text-stone-600 text-center">Training plan not loaded or is empty.</p>`;
         return;
+    }
+
+    const thisWeeksCard = document.getElementById('this-weeks-plan-card');
+    if (thisWeeksCard) {
+        thisWeeksCard.classList.add('custom-rect-border-this-week');
+        // thisWeeksCard.style.borderLeftWidth = '3px'; // Ensure consistent with class
     }
 
 
@@ -1274,10 +1284,10 @@ function renderOverview() {
     const uiTextOverview = marathonPlan.uiText.overview; 
     overviewSection.innerHTML = `
         <div class="md:flex md:space-x-6 space-y-6 md:space-y-0 mb-6">
-            <div id="todays-training-card" class="content-card p-4 md:flex-1"> 
+            <div id="todays-training-card" class="content-card p-4 md:flex-1 custom-rect-border-today"> 
                 <div id="todays-training-content"></div> 
             </div>
-            <div id="this-weeks-plan-card" class="content-card p-4 md:flex-1">
+            <div id="this-weeks-plan-card" class="content-card p-4 md:flex-1 custom-rect-border-this-week">
                 <div id="this-weeks-plan-content"></div> 
             </div>
         </div>
