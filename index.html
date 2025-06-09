@@ -36,7 +36,7 @@
             font-weight: 600; 
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
         }
-        .nav-button:hover:not(.active-overview):not(.active-plan):not(.active-calendar):not(.active-race):not(.active-news) { 
+        .nav-button:hover:not(.active-overview):not(.active-plan):not(.active-calendar):not(.active-race):not(.active-info):not(.active-companion) { 
             background-color: #f3f4f6; 
             color: #1f2937; 
         }
@@ -53,8 +53,12 @@
         .nav-button.active-race { background-color: #7c3aed; color: white; } 
         .nav-button.active-race:hover { background-color: #6d28d9; }
         
-        .nav-button.active-news { background-color: #4f46e5; color: white; } 
-        .nav-button.active-news:hover { background-color: #4338ca; } 
+        .nav-button.active-info { background-color: #6366f1; color: white; } 
+        .nav-button.active-info:hover { background-color: #4f46e5; }
+
+        .nav-button.active-companion { background-color: #10b981; color: white; } 
+        .nav-button.active-companion:hover { background-color: #047857; }
+
 
         .phase-button {
             padding: 0.5rem 1rem;
@@ -106,7 +110,6 @@
             background-color: #fafaf9; 
             padding: 1rem; 
             border-radius: 0.5rem; 
-            /* Default border removed, will be applied by specific border classes or default .overview-section-card etc. */
         }
         .content-card h3.phase-title-style { margin-bottom: 0.5rem; } 
         
@@ -253,22 +256,22 @@
 
         .custom-rect-border-nav { /* For nav tabs */
             border-top: 3px solid #f59e0b;    /* Yellow */
-            border-right: 3px solid #0284c7;   /* Blue */
+            border-right: 3px solid #0284c7;    /* Blue */
             border-bottom: 3px solid #0284c7; /* Blue */
             border-left: 3px solid #f59e0b;    /* Yellow */
             padding: 0.75rem !important; /* Unified padding */
             border-style: solid !important;
         }
         .custom-rect-border-today { /* For today's training card */
-             border-top: 3px solid #f59e0b !important;    /* Yellow */
-             border-right: 3px solid #0284c7 !important;   /* Blue */
-             border-bottom: 3px solid #0284c7 !important; /* Blue */
-             border-left: 3px solid #f59e0b !important;    /* Yellow */
-             border-style: solid !important;
+            border-top: 3px solid #f59e0b !important;    /* Yellow */
+            border-right: 3px solid #0284c7 !important;    /* Blue */
+            border-bottom: 3px solid #0284c7 !important; /* Blue */
+            border-left: 3px solid #f59e0b !important;    /* Yellow */
+            border-style: solid !important;
         }
         .custom-rect-border-this-week { /* For this week's plan card */
             border-top: 3px solid #15803d !important;    /* Green */
-            border-left: 3px solid #15803d !important;   /* Green */
+            border-left: 3px solid #15803d !important;    /* Green */
             border-bottom: 3px solid #dc2626 !important; /* Red */
             border-right: 3px solid #dc2626 !important;  /* Red */
             border-style: solid !important;
@@ -284,7 +287,7 @@
         .title-marathon {
             color: #0284c7; 
         }
-       
+        
         .loader {
             border: 4px solid #f3f3f3; 
             border-top: 4px solid #3b82f6; 
@@ -333,33 +336,33 @@
             height: 1.25rem; 
         }
 
-        #toggleRepeatsButton {
+        #toggleRepeatsButton, #toggleZonesButton {
             background-color: #0284c7; 
-            color: white;              
+            color: white;           
             border: 2px solid #f59e0b; 
             padding: 0.4rem 0.9rem;   
-            font-size: 0.9rem;        
-            font-weight: 600;          
+            font-size: 0.9rem;      
+            font-weight: 600;       
             border-radius: 0.375rem; 
             transition: background-color 0.2s, border-color 0.2s;
         }
-        #toggleRepeatsButton:hover {
+        #toggleRepeatsButton:hover, #toggleZonesButton:hover {
             background-color: #0369a1; 
             border-color: #d97706; 
         }
 
         /* Today's Training Card - Activity Text Color Classes */
-        .activity-text-easy { color: #16a34a !important; }
-        .activity-text-recovery { color: #075985 !important; }
-        .activity-text-base { color: #1e40af !important; }
-        .activity-text-tempo { color: #b45309 !important; }
-        .activity-text-interval, .activity-text-intervals { color: #991b1b !important; }
-        .activity-text-fartlek { color: #831843 !important; }
-        .activity-text-str, .activity-text-hills { color: #713f12 !important; }
-        .activity-text-rest { color: #374151 !important; }
-        .activity-text-zone, .activity-text-race { color: #5b21b6 !important; }
-        .activity-text-double { color: #78350f !important; }
-        .activity-text-mobility { color: #713f12 !important; }
+        .activity-text-easy, .pace-text-easy { color: #16a34a !important; }
+        .activity-text-recovery, .pace-text-recovery { color: #075985 !important; }
+        .activity-text-base, .pace-text-base { color: #1e40af !important; }
+        .activity-text-tempo, .pace-text-tempo { color: #b45309 !important; }
+        .activity-text-interval, .activity-text-intervals, .pace-text-interval, .pace-text-intervals { color: #991b1b !important; }
+        .activity-text-fartlek, .pace-text-fartlek { color: #831843 !important; }
+        .activity-text-str, .activity-text-hills, .pace-text-str, .pace-text-hills { color: #713f12 !important; }
+        .activity-text-rest, .pace-text-rest { color: #374151 !important; }
+        .activity-text-zone, .activity-text-race, .pace-text-zone, .pace-text-race { color: #5b21b6 !important; }
+        .activity-text-double, .pace-text-double { color: #78350f !important; }
+        .activity-text-mobility, .pace-text-mobility { color: #713f12 !important; }
         
         .highlight-zone-pace {
             background-color: #f59e0b !important; 
@@ -367,6 +370,110 @@
             font-weight: bold !important;
         }
 
+        /* --- Companion App Styles --- */
+        .companion-nav-button {
+            padding: 0.6rem 1.1rem; 
+            border-radius: 0.375rem; 
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            font-weight: 600; 
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+        .companion-nav-button:hover:not(.active) { 
+            background-color: #f3f4f6; 
+            color: #1f2937; 
+        }
+        .companion-nav-button.active.drills { background-color: #059669; color: white; }
+        .companion-nav-button.active.mobility { background-color: #0ea5e9; color: white; }
+        .companion-nav-button.active.strength { background-color: #f59e0b; color: white; }
+        
+        .exercise-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+        }
+        .exercise-card h3 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .exercise-card .details {
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            display: inline-block;
+        }
+        .details-drills { background-color: #dcfce7; color: #166534; }
+        .details-mobility { background-color: #e0f2fe; color: #075985; }
+        .details-strength { background-color: #fef3c7; color: #92400e; }
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0ea5e9;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .video-link:hover {
+            color: #0284c7;
+        }
+        .updates-card {
+            border-left-width: 4px;
+            border-left-color: #6366f1;
+        }
+        
+        /* --- Updates Modal --- */
+        #updates-modal .updates-modal-content-wrapper {
+            background-color: #f8fafc; /* A very light blue/gray */
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 36rem; /* 576px */
+            padding: 1.5rem;
+            position: relative;
+            max-height: 80vh; /* Make it scrollable if content is long */
+            overflow-y: auto;
+        }
+        #updates-modal .updates-modal-content-wrapper h2 {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        #close-updates-modal-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            color: #9ca3af;
+            background-color: #f3f4f6;
+            border-radius: 9999px;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+            z-index: 10;
+        }
+        #close-updates-modal-btn:hover {
+            color: #1f2937;
+            background-color: #e5e7eb;
+            transform: rotate(90deg);
+        }
+        #updates-modal .updates-card {
+            border-left-width: 4px;
+            border-left-color: #6366f1;
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
 
         @media print {
             body {
@@ -455,7 +562,8 @@
             #calendar-controls, 
             .calendar-grid, 
             #this-weeks-plan-card, 
-            #mileageChart, 
+            #mileage-chart-modal,
+            #updates-modal,
             #training-plan-content .chart-container, 
             .chart-container p,
             #calendar-selected-day-header, 
@@ -560,7 +668,7 @@
 <body class="min-h-screen p-4 py-8"> 
     <div id="login-container" class="main-container">
         <header class="mb-8 text-center">
-             <div class="css-logo-dna">
+            <div class="css-logo-dna">
                 <span class="logo-d">D</span><span class="logo-n">N</span><span class="logo-a">A</span>
             </div>
             <h1 class="text-3xl sm:text-4xl main-title text-stone-800 mt-2"> 
@@ -603,11 +711,12 @@
         </header>
 
         <nav class="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4 pb-4 custom-rect-border-nav">
-            <button id="nav-overview" class="nav-button active-overview">{NAV_OVERVIEW_TEXT}</button>
-            <button id="nav-news" class="nav-button">{NAV_NEWS_TEXT}</button>
-            <button id="nav-plan" class="nav-button">{NAV_PLAN_TEXT}</button>
-            <button id="nav-calendar" class="nav-button">{NAV_CALENDAR_TEXT}</button>
-            <button id="nav-race" class="nav-button">{NAV_RACE_TEXT}</button> 
+            <button id="nav-overview" class="nav-button active-overview">Plan Overview</button>
+            <button id="nav-plan" class="nav-button">Training Plan</button>
+            <button id="nav-companion" class="nav-button">Companion</button> 
+            <button id="nav-calendar" class="nav-button">Calendar</button>
+            <button id="nav-race" class="nav-button">Race</button> 
+            <button id="nav-info" class="nav-button">Info</button> 
         </nav>
 
         <main id="app-content">
@@ -623,11 +732,36 @@
     </div>
     <div id="print-section-container" class="hidden"></div>
 
+    <div id="mileage-chart-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+        <div class="bg-white p-4 rounded-lg shadow-xl relative w-full max-w-3xl">
+            <button id="closeMileageChartBtn" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            <h2 id="mileage-chart-modal-title" class="text-xl sm:text-2xl font-semibold text-sky-700 mb-3">Overall Mileage Progression</h2>
+            <div class="chart-container" style="height: 40vh;">
+                <canvas id="mileageChartModalCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Team Updates Modal -->
+    <div id="updates-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-[60]">
+        <div class="updates-modal-content-wrapper">
+             <button id="close-updates-modal-btn">&times;</button>
+             <div id="updates-modal-content">
+                <!-- Content will be injected by JS -->
+             </div>
+        </div>
+    </div>
+
+
 <script>
+// Hardcoded fallback for race date if not provided by the data source.
 const DEFAULT_RACE_DATE_STRING = '2025-11-09'; 
+// To store the current web app URL for data fetching.
 let currentWebAppUrl = ''; 
+// To hold the deferred PWA install prompt event.
 let deferredInstallPrompt = null;
 
+// Object mapping user IDs to their specific Google Apps Script web app URLs.
 const userSpecificDataSources = {
     "ADMIN": "https://script.google.com/macros/s/AKfycbxfeBaM8_DTlCppjt6eLWztDV2YBJih2TfRju9iL8BWQMvf2FneqdYUqNRIb0ypWu9U/exec", 
     "ALEX": "https://script.google.com/macros/s/AKfycbxqan2-K__zvFqJZ-b-se2SxNfPPCDHjuRyTxdatvv3AvIdnkJOdkQm8v3SPhcVgWoQvA/exec", 
@@ -644,13 +778,20 @@ const userSpecificDataSources = {
     "IOANNA": "tba",
 };
 
-let marathonPlan = null; 
-let datedTrainingPlan = []; 
-let currentRaceDate = null; 
-let calendarCurrentDisplayDate = new Date(); 
-let raceElevationChartInstance = null; 
-let mileageChartInstance = null; 
+// --- Companion App Data Source ---
+const companionDataUrl = "https://script.google.com/macros/s/AKfycbw3fpGf2W8ANwIaioiZdXZBeEjw3vr1g3XSLf3KXPR3wKLDPYSDpRbFGjJ-BDZLYd6rKg/exec";
 
+
+// Global variables to hold application state and data.
+let marathonPlan = null; // Stores the entire JSON object from the Google Sheet.
+let datedTrainingPlan = []; // Stores each day of the plan with a specific date.
+let currentRaceDate = null; // The calculated date of the race.
+let calendarCurrentDisplayDate = new Date(); // The month/year the calendar is currently showing.
+let raceElevationChartInstance = null; // Chart.js instance for the elevation profile.
+let mileageChartInstance = null; // Chart.js instance for the weekly mileage.
+let companionData = null; // Stores data for the companion app.
+
+// DOM element references for quick access.
 const loginContainer = document.getElementById('login-container');
 const mainAppWrapper = document.getElementById('main-app-wrapper');
 const appContent = document.getElementById('app-content');
@@ -660,6 +801,11 @@ const loginErrorMessageDiv = document.getElementById('login-error-message');
 const loginLoadingMessageDiv = document.getElementById('login-loading-message');
 const installPwaButton = document.getElementById('installPwaButton');
 
+/**
+ * Parses a pace string (e.g., "5:30") into total seconds.
+ * @param {string} paceString The pace string in "mm:ss" format.
+ * @returns {number} Total seconds, or NaN if invalid.
+ */
 function parsePaceToSeconds(paceString) { 
     if (!paceString || typeof paceString !== 'string') return NaN;
     const parts = paceString.trim().split(':'); if (parts.length !== 2) return NaN;
@@ -667,6 +813,11 @@ function parsePaceToSeconds(paceString) {
     if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || seconds < 0 || seconds >= 60) return NaN;
     return (minutes * 60) + seconds;
 }
+/**
+ * Formats total seconds into a pace string (e.g., "5:30").
+ * @param {number} totalSeconds The total seconds to format.
+ * @returns {string} The formatted pace string "m:ss".
+ */
 function formatSecondsToPace(totalSeconds) { 
     if (isNaN(totalSeconds) || totalSeconds < 0) return "N/A";
     const minutes = Math.floor(totalSeconds / 60); const seconds = Math.round(totalSeconds % 60); 
@@ -674,9 +825,14 @@ function formatSecondsToPace(totalSeconds) {
 }
 
 
+/**
+ * Updates static UI text elements (like titles and button labels) using data from the fetched plan.
+ * Falls back to default English text if the data is not available.
+ */
 function updateStaticUIText() {
     if (!marathonPlan || !marathonPlan.uiText) {
         console.warn("marathonPlan.uiText not available. Using default HTML text.");
+        // Set default text content if uiText object is missing.
         document.getElementById('loginButton').textContent = 'Enter the Run';
         document.getElementById('mainTitleProject').textContent = 'project:';
         document.getElementById('mainTitleMarathon').textContent = 'Marathon';
@@ -684,13 +840,15 @@ function updateStaticUIText() {
         document.getElementById('appHeaderTitleMarathon').textContent = 'Marathon';
         document.getElementById('appSubtitle').textContent = 'Your interactive guide to marathon training.';
         document.getElementById('nav-overview').textContent = 'Plan Overview';
-        document.getElementById('nav-news').textContent = 'News';
         document.getElementById('nav-plan').textContent = 'Training Plan';
         document.getElementById('nav-calendar').textContent = 'Calendar';
         document.getElementById('nav-race').textContent = 'Race'; 
+        document.getElementById('nav-companion').textContent = 'Companion'; 
+        document.getElementById('nav-info').textContent = 'Info'; 
         return;
     }
     const uiText = marathonPlan.uiText;
+    // Set text content from the fetched uiText object, with fallbacks.
     document.getElementById('loginButton').textContent = uiText.loginButtonText || 'Enter the Run';
     document.getElementById('mainTitleProject').textContent = uiText.mainTitleProject || 'project:';
     document.getElementById('mainTitleMarathon').textContent = uiText.mainTitleMarathon || 'Marathon';
@@ -698,12 +856,19 @@ function updateStaticUIText() {
     document.getElementById('appHeaderTitleMarathon').textContent = uiText.mainTitleMarathon || 'Marathon';
     document.getElementById('appSubtitle').textContent = uiText.appSubtitle || 'Your interactive guide to marathon training.';
     document.getElementById('nav-overview').textContent = uiText.navButtonOverview || 'Plan Overview';
-    document.getElementById('nav-news').textContent = uiText.navButtonNews || 'News';
     document.getElementById('nav-plan').textContent = uiText.navButtonPlan || 'Training Plan';
     document.getElementById('nav-calendar').textContent = uiText.navButtonCalendar || 'Calendar';
     document.getElementById('nav-race').textContent = uiText.navButtonRace || 'Race'; 
+    document.getElementById('nav-companion').textContent = uiText.navButtonCompanion || 'Companion';
+    document.getElementById('nav-info').textContent = uiText.navButtonInfo || 'Info';
 }
 
+/**
+ * Fetches the entire marathon training plan from the specified Google Apps Script URL.
+ * Validates the structure of the returned JSON data.
+ * @param {string} webAppUrlToUse The URL of the web app to fetch data from.
+ * @returns {Promise<boolean>} True on successful fetch and parse, false otherwise.
+ */
 async function fetchMarathonPlan(webAppUrlToUse) {
     if (!webAppUrlToUse) {
         console.error("No Web App URL for fetching plan.");
@@ -723,6 +888,7 @@ async function fetchMarathonPlan(webAppUrlToUse) {
             throw new Error(`Error from Google Sheet App: ${data.error}`);
         }
         
+        // Basic validation of the received data structure.
         if (!data.uiText || typeof data.uiText !== 'object' ||
             !data.settings || !data.settings.zones || !Array.isArray(data.settings.zones) || 
             !data.settings.hasOwnProperty('defaultLt2Speed') ||
@@ -743,6 +909,7 @@ async function fetchMarathonPlan(webAppUrlToUse) {
         marathonPlan = data; 
         updateStaticUIText();
 
+        // Validate and process the plan's start date to calculate the race date.
         const planStartDateString = marathonPlan.settings.planStartDate;
         if (!planStartDateString || !isValidDate(new Date(planStartDateString + "T00:00:00"))) {
             throw new Error("Invalid or missing 'planStartDate' in settings from Google Sheet.");
@@ -765,6 +932,7 @@ async function fetchMarathonPlan(webAppUrlToUse) {
         
         calculateAndStoreDatedTrainingPlan(currentRaceDate);
         
+        // Set the calendar to start on the first month of the plan.
         calendarCurrentDisplayDate = new Date(planStartDate); 
         calendarCurrentDisplayDate.setDate(1); 
         return true; 
@@ -777,22 +945,60 @@ async function fetchMarathonPlan(webAppUrlToUse) {
     }
 }
 
+/**
+ * Initializes the main application after a successful login and data fetch.
+ * Hides login UI, shows main app UI, sets up navigation, and renders the initial view.
+ */
 function initializeApp() {
     if(loadingMessageDiv) loadingMessageDiv.classList.add('hidden');
     if(errorMessageDiv) errorMessageDiv.classList.add('hidden');
     if(appContent) appContent.innerHTML = ''; 
 
+    // Add event listeners to the main navigation buttons.
     document.getElementById('nav-overview').addEventListener('click', renderOverview);
-    document.getElementById('nav-news').addEventListener('click', renderNewsTab); 
     document.getElementById('nav-plan').addEventListener('click', renderTrainingPlan);
     document.getElementById('nav-calendar').addEventListener('click', renderCalendarTab);
     document.getElementById('nav-race').addEventListener('click', renderRaceTab); 
+    document.getElementById('nav-companion').addEventListener('click', renderCompanionTab);
+    document.getElementById('nav-info').addEventListener('click', renderInfoTab);
     
-    renderOverview();
+    // Add event listeners for the mileage chart modal
+    const mileageModal = document.getElementById('mileage-chart-modal');
+    const closeMileageBtn = document.getElementById('closeMileageChartBtn');
+    if(mileageModal && closeMileageBtn) {
+        closeMileageBtn.addEventListener('click', () => mileageModal.classList.add('hidden'));
+        mileageModal.addEventListener('click', (e) => {
+            if (e.target.id === 'mileage-chart-modal') {
+                mileageModal.classList.add('hidden');
+            }
+        });
+    }
+
+    // Add event listeners for the new updates modal
+    const updatesModal = document.getElementById('updates-modal');
+    const closeUpdatesBtn = document.getElementById('close-updates-modal-btn');
+    if(updatesModal && closeUpdatesBtn) {
+        closeUpdatesBtn.addEventListener('click', () => updatesModal.classList.add('hidden'));
+        updatesModal.addEventListener('click', (e) => {
+             // Closes modal if user clicks on the background overlay
+            if (e.target.id === 'updates-modal') {
+                updatesModal.classList.add('hidden');
+            }
+        });
+    }
+
+    renderOverview(); // Render the default "Overview" tab.
     mainAppWrapper.classList.remove('hidden');
     loginContainer.classList.add('hidden');
+    
+    // Show the updates modal after the main app is visible.
+    showUpdatesModalIfNeeded(); 
 }
 
+/**
+ * Handles the login process when the user clicks the login button.
+ * Validates User ID, fetches data, and initializes the app on success.
+ */
 async function handleLogin() {
     const userIdInput = document.getElementById('userIdInput');
     const userId = userIdInput.value.trim().toUpperCase(); 
@@ -800,7 +1006,7 @@ async function handleLogin() {
     loginLoadingMessageDiv.classList.remove('hidden');
     currentWebAppUrl = userSpecificDataSources[userId]; 
     if (currentWebAppUrl) { 
-        localStorage.setItem('lastUserID', userId); 
+        localStorage.setItem('lastUserID', userId); // Remember user for next visit.
         localStorage.setItem('lastWebAppUrl', currentWebAppUrl);
         const success = await fetchMarathonPlan(currentWebAppUrl); 
         if (success) initializeApp(); 
@@ -814,30 +1020,42 @@ async function handleLogin() {
     }
 }
 
+/**
+ * Sets the visual "active" state for the currently selected navigation button.
+ * @param {string} activeId The ID of the nav button to activate.
+ */
 function setActiveNav(activeId) {
     const navButtons = document.querySelectorAll('.nav-button');
     navButtons.forEach(btn => {
-        btn.classList.remove('active-overview', 'active-plan', 'active-calendar', 'active-race', 'active-news'); 
+        btn.classList.remove('active-overview', 'active-plan', 'active-calendar', 'active-race', 'active-companion', 'active-info'); 
         if (btn.id === activeId) {
             if (activeId === 'nav-overview') btn.classList.add('active-overview');
             else if (activeId === 'nav-plan') btn.classList.add('active-plan');
             else if (activeId === 'nav-calendar') btn.classList.add('active-calendar');
             else if (activeId === 'nav-race') btn.classList.add('active-race'); 
-            else if (activeId === 'nav-news') btn.classList.add('active-news');
-            else btn.classList.add('active-overview');
+            else if (activeId === 'nav-info') btn.classList.add('active-info');
+            else if (activeId === 'nav-companion') btn.classList.add('active-companion');
+            else btn.classList.add('active-overview'); // Default active style.
         }
     });
 }
 
+/**
+ * Creates an HTML unordered list from an array of strings.
+ * @param {string[]} items Array of strings to be converted to list items.
+ * @returns {string} An HTML `<ul>` element as a string.
+ */
 function createHtmlList(items) {
     if (!items || !Array.isArray(items)) return ''; 
     return `<ul class="list-disc list-inside space-y-1 text-stone-700">${items.map(item => {
+        // Sanitize innerHTML to prevent XSS, though data is from a trusted source.
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = item;
         return `<li>${tempDiv.innerHTML}</li>`;
     }).join('')}</ul>`;
 }
 
+// Utility functions for date manipulation and validation.
 function isValidDate(d) { return d instanceof Date && !isNaN(d); }
 function formatDate(date, options = { year: 'numeric', month: 'long', day: 'numeric' }) {
     if (!isValidDate(date)) return "N/A";
@@ -855,10 +1073,16 @@ function isSameDay(date1, date2) {
            date1.getDate() === date2.getDate();
 }
 
+/**
+ * Populates the `datedTrainingPlan` array by assigning a specific date to each training day,
+ * working backward from the race date.
+ * @param {Date} planEndDate The final date of the plan (race day).
+ */
 function calculateAndStoreDatedTrainingPlan(planEndDate) { 
     if (!marathonPlan || !marathonPlan.phases || !isValidDate(planEndDate)) {
         datedTrainingPlan = []; return; 
     }
+    // Flatten the entire plan into a single array of day objects.
     let allDaysScheduled = [];
     marathonPlan.phases.forEach(phase => {
         phase.weeks.forEach(week => {
@@ -870,25 +1094,104 @@ function calculateAndStoreDatedTrainingPlan(planEndDate) {
     });
     datedTrainingPlan = [];
     let tempCurrentDate = new Date(planEndDate); 
+    // Assign dates by iterating backward from the race day.
     for (let i = allDaysScheduled.length - 1; i >= 0; i--) {
         datedTrainingPlan.unshift({ date: new Date(tempCurrentDate), ...allDaysScheduled[i] });
         tempCurrentDate = addDays(tempCurrentDate, -1); 
     }
 }
 
+/**
+ * Calculates and returns the pace string for a given activity.
+ * @param {string} activityString The full activity text.
+ * @param {string} lt2PaceString The user's LT2 pace.
+ * @returns {string} The formatted pace string (e.g., "6:06 - 5:39") or an empty string.
+ */
+function getPaceStringForActivity(activityString, lt2PaceString) {
+    if (!activityString || !lt2PaceString || lt2PaceString === "N/A") return '';
+    const lt2SpeedInSeconds = parsePaceToSeconds(lt2PaceString);
+    if (isNaN(lt2SpeedInSeconds)) return '';
+
+    const zonesData = [
+        { name: "Z1", lowPaceFactor: 1.54, highPaceFactor: 1.33 },
+        { name: "Z2", lowPaceFactor: 1.32, highPaceFactor: 1.16 },
+        { name: "Z3", lowPaceFactor: 1.15, highPaceFactor: 1.01 },
+        { name: "Z4", lowPaceFactor: 1.00, highPaceFactor: 0.91 },
+        { name: "Z5", lowPaceFactor: 0.90, highPaceFactor: 0.83 }
+    ];
+
+    const zoneRegex = /(Z[1-5])\s*\((Low|Average|High)\)/gi;
+    let match;
+    const paces = [];
+
+    while ((match = zoneRegex.exec(activityString)) !== null) {
+        const zoneName = match[1].toUpperCase();
+        const paceType = match[2].toLowerCase();
+        const zoneInfo = zonesData.find(z => z.name === zoneName);
+
+        if (zoneInfo) {
+            let paceInSeconds;
+            if (paceType === 'low') {
+                paceInSeconds = lt2SpeedInSeconds * zoneInfo.lowPaceFactor;
+            } else if (paceType === 'high') {
+                paceInSeconds = lt2SpeedInSeconds * zoneInfo.highPaceFactor;
+            } else if (paceType === 'average') {
+                paceInSeconds = lt2SpeedInSeconds * (zoneInfo.lowPaceFactor + zoneInfo.highPaceFactor) / 2;
+            }
+            if (paceInSeconds) {
+                paces.push(formatSecondsToPace(paceInSeconds));
+            }
+        }
+    }
+
+    return paces.join(' - ');
+}
+
+
+/**
+ * Gets the appropriate text color CSS class for an activity type.
+ * @param {string} activityFirstWord The first word of the activity description.
+ * @returns {string} The CSS class name.
+ */
+function getActivityTextColorClass(activityFirstWord) {
+    switch (activityFirstWord) {
+        case 'easy': return 'activity-text-easy';
+        case 'recovery': return 'activity-text-recovery';
+        case 'base': return 'activity-text-base';
+        case 'tempo': return 'activity-text-tempo';
+        case 'interval': case 'intervals': return 'activity-text-interval';
+        case 'fartlek': return 'activity-text-fartlek';
+        case 'str': case 'hills': return 'activity-text-str';
+        case 'rest': return 'activity-text-rest';
+        case 'zone': case 'race': return 'activity-text-zone';
+        case 'double': return 'activity-text-double';
+        case 'mobility': return 'activity-text-mobility';
+        default: return '';
+    }
+}
+
+
+/**
+ * Renders the pace calculator for zones and repeats based on the user's LT2 pace.
+ * It also highlights the relevant pace in the zones table for the current day's activity.
+ * @param {string} lt2PaceString The lactate threshold pace (mm:ss).
+ * @param {object} todaysActivityForHighlight The activity object for the current day to determine which pace to highlight.
+ */
 function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) { 
     const zonesContainer = document.getElementById('today-zones-content');
     const repeatsContainer = document.getElementById('today-repeats-content');
+    const toggleZonesButton = document.getElementById('toggleZonesButton');
     const toggleRepeatsButton = document.getElementById('toggleRepeatsButton');
 
-    if (!zonesContainer || !repeatsContainer || !toggleRepeatsButton) { 
-        if(zonesContainer) zonesContainer.innerHTML = `<p class="text-xs text-red-500 italic">UI error for pace display.</p>`;
+    if (!zonesContainer || !repeatsContainer || !toggleZonesButton || !toggleRepeatsButton) { 
+        console.error("Pace display UI elements not found.");
         return;
     }
 
     if (!lt2PaceString || lt2PaceString === "N/A") {
         zonesContainer.innerHTML = `<p class="text-xs text-stone-500 italic">Set Default LT2 Speed in Settings sheet to see paces.</p>`;
         repeatsContainer.innerHTML = ''; 
+        toggleZonesButton.classList.add('hidden');
         toggleRepeatsButton.classList.add('hidden');
         return;
     }
@@ -896,15 +1199,15 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
     if (isNaN(lt2SpeedInSeconds) || lt2SpeedInSeconds <= 0) {
         zonesContainer.innerHTML = `<p class="text-xs text-red-500 italic">Invalid LT2 speed format in Settings ('${lt2PaceString}'). Use mm:ss.</p>`;
         repeatsContainer.innerHTML = '';
+        toggleZonesButton.classList.add('hidden');
         toggleRepeatsButton.classList.add('hidden');
         return;
     }
     
+    toggleZonesButton.classList.remove('hidden');
     toggleRepeatsButton.classList.remove('hidden');
-    const repeatsTableId = 'today-repeats-table';
-    let repeatsTable = document.getElementById(repeatsTableId);
-
-
+    
+    // ZONES TABLE
     const zonesData = [
         { name: "Z1", descriptor: "Easy/Rec", lowPaceFactor: 1.54, highPaceFactor: 1.33, colorClass: "text-green-600" },
         { name: "Z2", descriptor: "Aerobic", lowPaceFactor: 1.32, highPaceFactor: 1.16, colorClass: "text-sky-600" },
@@ -912,32 +1215,38 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
         { name: "Z4", descriptor: "Threshold", lowPaceFactor: 1.00, highPaceFactor: 0.91, colorClass: "text-amber-500" },
         { name: "Z5", descriptor: "VO2 Max", lowPaceFactor: 0.90, highPaceFactor: 0.83, colorClass: "text-red-600" }
     ];
-    let zonesTableHtml = `<table class="today-pace-table"><thead><tr>
-                            <th class="header-zone">Zone</th>
-                            <th class="header-pace">Pace</th>
-                            <th class="header-low">Low</th>
-                            <th class="header-average">Average</th>
-                            <th class="header-high">High</th>
-                          </tr></thead><tbody>`;
+    let zonesTableHtml = `<table id="today-zones-table" class="today-pace-table hidden"><thead><tr>
+                                <th class="header-zone">Zone</th>
+                                <th class="header-pace">Pace</th>
+                                <th class="header-low">Low</th>
+                                <th class="header-average">Average</th>
+                                <th class="header-high">High</th>
+                              </tr></thead><tbody>`;
     zonesData.forEach(zone => {
         const sPS = lt2SpeedInSeconds * zone.lowPaceFactor; 
         const fPS = lt2SpeedInSeconds * zone.highPaceFactor; 
         const avgPS = (sPS + fPS) / 2; 
         zonesTableHtml += `<tr>
-                             <td class="${zone.colorClass} font-semibold">${zone.name}</td>
-                             <td class="font-bold">${formatSecondsToPace(sPS)} - ${formatSecondsToPace(fPS)}</td>
-                             <td class="font-bold">${formatSecondsToPace(sPS)}</td>
-                             <td class="font-bold">${formatSecondsToPace(avgPS)}</td>
-                             <td class="font-bold">${formatSecondsToPace(fPS)}</td>
-                           </tr>`;
+                                 <td class="${zone.colorClass} font-semibold">${zone.name}</td>
+                                 <td class="font-bold">${formatSecondsToPace(sPS)} - ${formatSecondsToPace(fPS)}</td>
+                                 <td class="font-bold">${formatSecondsToPace(sPS)}</td>
+                                 <td class="font-bold">${formatSecondsToPace(avgPS)}</td>
+                                 <td class="font-bold">${formatSecondsToPace(fPS)}</td>
+                               </tr>`;
     });
     zonesTableHtml += `</tbody></table>`;
     zonesContainer.innerHTML = zonesTableHtml;
 
-    const paceTable = zonesContainer.querySelector('table');
-    if (paceTable) {
-        paceTable.querySelectorAll('td').forEach(td => td.classList.remove('highlight-zone-pace'));
+    const zonesTable = document.getElementById('today-zones-table');
+    toggleZonesButton.textContent = zonesTable.classList.contains('hidden') ? 'Show Zones' : 'Hide Zones';
+    toggleZonesButton.onclick = function() {
+        zonesTable.classList.toggle('hidden');
+        this.textContent = zonesTable.classList.contains('hidden') ? 'Show Zones' : 'Hide Zones';
+    }
 
+
+    if (zonesTable) {
+        zonesTable.querySelectorAll('td').forEach(td => td.classList.remove('highlight-zone-pace'));
         if (todaysActivityForHighlight && todaysActivityForHighlight.activity) {
             const activityText = todaysActivityForHighlight.activity.replace(/^[^:]+:\s*/, '');
             const zoneRegex = /(Z[1-5])\s*\((Low|Average|High)\)/gi;
@@ -945,8 +1254,7 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
             while ((match = zoneRegex.exec(activityText)) !== null) {
                 const zoneToHighlight = match[1].toUpperCase(); 
                 const paceTypeToHighlight = match[2].toLowerCase(); 
-
-                const rows = paceTable.querySelectorAll('tbody tr');
+                const rows = zonesTable.querySelectorAll('tbody tr');
                 rows.forEach(row => {
                     const zoneCell = row.cells[0];
                     if (zoneCell && zoneCell.textContent.trim().toUpperCase() === zoneToHighlight) {
@@ -954,7 +1262,6 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
                         if (paceTypeToHighlight === 'low') cellToHighlight = row.cells[2];
                         else if (paceTypeToHighlight === 'average') cellToHighlight = row.cells[3];
                         else if (paceTypeToHighlight === 'high') cellToHighlight = row.cells[4];
-                        
                         if (cellToHighlight) {
                             cellToHighlight.classList.add('highlight-zone-pace');
                         }
@@ -965,11 +1272,12 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
     }
 
 
+    // REPEATS TABLE
     const repeatDistances = [
         {d:"3km",f:1.02,m:3},{d:"1 Mile",f:0.98,m:1.60934},{d:"1km",f:0.95,m:1},
         {d:"800m",f:0.92,m:0.8},{d:"400m",f:0.88,m:0.4},{d:"200m",f:0.85,m:0.2}
     ];
-    let repeatsTableHtml = `<table id="${repeatsTableId}" class="today-pace-table mt-1 hidden"><thead><tr><th>Dist.</th><th>Time</th><th>Pace/km</th></tr></thead><tbody>`;
+    let repeatsTableHtml = `<table id="today-repeats-table" class="today-pace-table mt-1 hidden"><thead><tr><th>Dist.</th><th>Time</th><th>Pace/km</th></tr></thead><tbody>`;
     repeatDistances.forEach(item => {
         const tPPS = lt2SpeedInSeconds * item.f; 
         const tTDS = tPPS * item.m; 
@@ -978,24 +1286,25 @@ function renderTodayPaces(lt2PaceString, todaysActivityForHighlight) {
     repeatsTableHtml += `</tbody></table>`;
     repeatsContainer.innerHTML = repeatsTableHtml;
     
-    repeatsTable = document.getElementById(repeatsTableId);
-    toggleRepeatsButton.textContent = repeatsTable && repeatsTable.classList.contains('hidden') ? 'Show Repeats' : 'Hide Repeats';
-
+    const repeatsTable = document.getElementById('today-repeats-table');
+    toggleRepeatsButton.textContent = repeatsTable.classList.contains('hidden') ? 'Show Repeats' : 'Hide Repeats';
     toggleRepeatsButton.onclick = function() { 
-        const table = document.getElementById(repeatsTableId);
-        if (table) {
-            table.classList.toggle('hidden');
-            toggleRepeatsButton.textContent = table.classList.contains('hidden') ? 'Show Repeats' : 'Hide Repeats';
-        }
+        repeatsTable.classList.toggle('hidden');
+        this.textContent = repeatsTable.classList.contains('hidden') ? 'Show Repeats' : 'Hide Repeats';
     };
 }
 
+/**
+ * Renders the "Today's Training" card on the overview page.
+ * Finds today's activity from the dated plan and displays it along with pace calculations.
+ */
 function renderTodaysTraining() {
     const container = document.getElementById('todays-training-content');
     if (!container || !marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.overview) {
         if(container) container.innerHTML = "<p>Loading today's training data...</p>"; 
         return;
     }
+    // Ensure the dated plan is calculated if it hasn't been already.
     if (datedTrainingPlan.length === 0 && marathonPlan.settings.planStartDate && marathonPlan) {
         const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
         let totalDaysInPlan = 0;
@@ -1015,33 +1324,34 @@ function renderTodaysTraining() {
     });
 
     let activityContentHtml = '';
-    // Reset default colors for heading and date, dynamic text color will be applied to activityText only
     let titleHtml = `<h3 class="text-2xl font-semibold text-sky-700 mb-1 text-center">Today</h3>
-                       <p class="text-xs text-stone-500 text-center mb-3">${formatDate(today, { weekday: 'long', month: 'long', day: 'numeric' })}</p>`;
+                               <p class="text-xs text-stone-500 text-center mb-3">${formatDate(today, { weekday: 'long', month: 'long', day: 'numeric' })}</p>`;
     let notesBoxHtml = '';
     const todayCard = document.getElementById('todays-training-card');
 
-    // Ensure the custom border is applied, and reset any dynamic background classes from previous renders
     if (todayCard) {
-        const dynamicBgClasses = [ // List of old background classes to remove if any
-            'today-bg-easy', 'today-bg-recovery', 'today-bg-base', 'today-bg-tempo', 
-            'today-bg-interval', 'today-bg-fartlek', 'today-bg-str', 'today-bg-rest', 
-            'today-bg-zone', 'today-bg-race', 'today-bg-double', 'today-bg-hills', 'today-bg-mobility'
-        ];
-        dynamicBgClasses.forEach(cls => todayCard.classList.remove(cls));
-        todayCard.style.backgroundColor = ''; // Revert to default .content-card background
-        if (!todayCard.classList.contains('custom-rect-border-today')) { // Apply if not present
-            todayCard.classList.add('custom-rect-border-today');
-        }
+        todayCard.classList.add('custom-rect-border-today');
     }
 
 
     if (todaysActivity) { 
-        let activityTextForDisplay = todaysActivity.activity.replace(/^[^:]+:\s*/, ''); 
+        const activityTextForDisplay = todaysActivity.activity.replace(/^[^:]+:\s*/, ''); 
+        const activityDescriptionOnly = todaysActivity.activity.replace(/^[^:]+:\s*/, '').trim();
+        const firstWord = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
+        const colorClass = getActivityTextColorClass(firstWord);
+
+        const lt2PaceString = marathonPlan?.settings?.defaultLt2Speed || "N/A";
+        const paceString = getPaceStringForActivity(todaysActivity.activity, lt2PaceString);
+        let paceHtml = '';
+        if (paceString) {
+             paceHtml = `<p class="pace-text text-lg font-semibold mt-1 ${colorClass}">Pace: ${paceString}</p>`;
+        }
+
         activityContentHtml = `
             <div class="todays-activity-box">
-                <p><strong class="activity-text">${activityTextForDisplay}</strong></p> 
-                <p class="text-xs text-stone-500 mt-1">Phase: ${todaysActivity.phaseName} | Week: ${todaysActivity.weekNum}</p>
+                <p><strong class="activity-text ${colorClass}">${activityTextForDisplay}</strong></p> 
+                ${paceHtml}
+                <p class="text-xs text-stone-500 mt-2">Phase: ${todaysActivity.phaseName} | Week: ${todaysActivity.weekNum}</p>
             </div>
         `;
         if (todaysActivity.notes) { 
@@ -1066,64 +1376,39 @@ function renderTodaysTraining() {
     }
 
     const paceCalculatorHtml = `
-        <h3 class="text-lg font-semibold mt-4 text-sky-700">Zones</h3> 
-        <div id="today-zones-content"></div> 
-        <div class="mt-3 mb-1 flex justify-between items-center">
-             <h3 class="text-lg font-semibold text-yellow-500">Repeats</h3>
-             <button id="toggleRepeatsButton" class="hidden">Show Repeats</button>
+        <div class="mt-4 space-y-2">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold text-sky-700">Pace Zones</h3>
+                <button id="toggleZonesButton" class="hidden">Show Zones</button>
+            </div>
+            <div id="today-zones-content"></div> 
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold text-yellow-500">Repeats</h3>
+                <button id="toggleRepeatsButton" class="hidden">Show Repeats</button>
+            </div>
+            <div id="today-repeats-content" class="mt-1"></div>
         </div>
-        <div id="today-repeats-content" class="mt-1"></div>
     `;
     container.innerHTML = titleHtml + activityContentHtml + notesBoxHtml + paceCalculatorHtml;
     
-    // Apply dynamic text color to the activity text after HTML is set
-    if (todaysActivity) {
-        const strongActivityTextElement = container.querySelector('.todays-activity-box .activity-text');
-        if (strongActivityTextElement) {
-            const dynamicActivityTextClasses = [
-                'activity-text-easy', 'activity-text-recovery', 'activity-text-base', 'activity-text-tempo', 
-                'activity-text-interval', 'activity-text-intervals', 'activity-text-fartlek', 'activity-text-str', 
-                'activity-text-rest', 'activity-text-zone', 'activity-text-race', 'activity-text-double', 
-                'activity-text-hills', 'activity-text-mobility'
-            ];
-            dynamicActivityTextClasses.forEach(cls => strongActivityTextElement.classList.remove(cls)); 
-            
-            const activityDescriptionOnly = todaysActivity.activity.replace(/^[^:]+:\s*/, '').trim();
-            const firstWord = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
-            
-            switch (firstWord) {
-                case 'easy': strongActivityTextElement.classList.add('activity-text-easy'); break;
-                case 'recovery': strongActivityTextElement.classList.add('activity-text-recovery'); break;
-                case 'base': strongActivityTextElement.classList.add('activity-text-base'); break; 
-                case 'tempo': strongActivityTextElement.classList.add('activity-text-tempo'); break;
-                case 'interval': 
-                case 'intervals': strongActivityTextElement.classList.add('activity-text-interval'); break;
-                case 'fartlek': strongActivityTextElement.classList.add('activity-text-fartlek'); break;
-                case 'str': strongActivityTextElement.classList.add('activity-text-str'); break;
-                case 'rest': strongActivityTextElement.classList.add('activity-text-rest'); break;
-                case 'zone': strongActivityTextElement.classList.add('activity-text-zone'); break;
-                case 'race': strongActivityTextElement.classList.add('activity-text-race'); break;
-                case 'double': strongActivityTextElement.classList.add('activity-text-double'); break;
-                case 'hills': strongActivityTextElement.classList.add('activity-text-hills'); break;
-                case 'mobility': strongActivityTextElement.classList.add('activity-text-mobility'); break;
-                default: strongActivityTextElement.style.color = ''; // Reset to default if no match
-            }
-        }
-    }
-    
-
     if (marathonPlan && marathonPlan.settings) {
         renderTodayPaces(marathonPlan.settings.defaultLt2Speed, todaysActivity); 
     } else { 
         const zonesContainer = document.getElementById('today-zones-content');
         const repeatsContainer = document.getElementById('today-repeats-content');
-        const toggleBtn = document.getElementById('toggleRepeatsButton');
+        const toggleZonesBtn = document.getElementById('toggleZonesButton');
+        const toggleRepeatsBtn = document.getElementById('toggleRepeatsButton');
         if(zonesContainer) zonesContainer.innerHTML = `<p class="text-xs text-stone-500 italic">Loading pace data...</p>`;
         if(repeatsContainer) repeatsContainer.innerHTML = '';
-        if(toggleBtn) toggleBtn.classList.add('hidden');
+        if(toggleZonesBtn) toggleZonesBtn.classList.add('hidden');
+        if(toggleRepeatsBtn) toggleRepeatsBtn.classList.add('hidden');
     }
 }
 
+/**
+ * Renders the "This Week's Plan" card on the overview page.
+ * It determines the current week (Mon-Sun) and displays all scheduled activities for those days.
+ */
 function renderThisWeeksPlan() {
     const container = document.getElementById('this-weeks-plan-content');
     if (!container || !marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.overview) {
@@ -1148,12 +1433,12 @@ function renderThisWeeksPlan() {
     const thisWeeksCard = document.getElementById('this-weeks-plan-card');
     if (thisWeeksCard) {
         thisWeeksCard.classList.add('custom-rect-border-this-week');
-        // thisWeeksCard.style.borderLeftWidth = '3px'; // Ensure consistent with class
     }
 
 
     const today = new Date();
     const dayOfWeek = today.getDay(); 
+    // Calculate the start of the week (Monday).
     const startOfWeekOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
     const monday = new Date(new Date().setDate(today.getDate() + startOfWeekOffset));
     monday.setHours(0, 0, 0, 0); 
@@ -1161,6 +1446,7 @@ function renderThisWeeksPlan() {
     let weekNotes = ""; 
     let weekInfoFound = false;
 
+    // Loop through the 7 days of the current week.
     for (let i = 0; i < 7; i++) {
         const dayInWeek = addDays(monday, i);
         dayInWeek.setHours(0,0,0,0); 
@@ -1179,6 +1465,7 @@ function renderThisWeeksPlan() {
                 weekInfoFound = true;
             }
             const activityString = activityForDay.activity;
+            // Extract day name prefix (e.g., "Mon:") if it exists in the activity string.
             const dayPrefixMatch = activityString.match(/^(\w{3,4}(\s\d{1,2})?):\s*(.*)/s); 
             if (dayPrefixMatch && dayPrefixMatch[1] && dayPrefixMatch[3]) {
                 displayDayName = dayPrefixMatch[1].trim(); 
@@ -1190,6 +1477,7 @@ function renderThisWeeksPlan() {
             activityDescription = "Rest or Unscheduled";
         }
         
+        // Format the activity description for better readability (bolding the type).
         const activityParts = activityDescription.split(/:(.*)/s); 
         let formattedActivity;
         if (activityParts.length > 1 && activityParts[0].trim() !== "") {
@@ -1205,6 +1493,7 @@ function renderThisWeeksPlan() {
     }
     
     if (currentWeekActivities.length > 0) {
+        // Create table rows for the week's schedule.
         const dayColors = ['bg-red-50', 'bg-orange-50', 'bg-amber-50', 'bg-yellow-50', 'bg-lime-50', 'bg-green-50', 'bg-emerald-50']; 
         let tableRowsHtml = currentWeekActivities.map((dayEntry, index) => {
             const bgColor = dayColors[index % dayColors.length];
@@ -1248,10 +1537,16 @@ function renderThisWeeksPlan() {
     }
 }
 
+/**
+ * Handles the print functionality. It clones the specified content area,
+ * makes it visible for printing, and then hides it again.
+ * @param {string} printableAreaId The ID of the element to be printed.
+ */
 function printSelectedWeekToPdf(printableAreaId) {
     const originalContentToPrint = document.getElementById(printableAreaId);
 
     if (originalContentToPrint) {
+        // Clone the content to avoid modifying the original DOM.
         const clonedWeekContent = originalContentToPrint.cloneNode(true);
         clonedWeekContent.classList.add('currently-printing-this-week'); 
 
@@ -1261,12 +1556,14 @@ function printSelectedWeekToPdf(printableAreaId) {
         
         printContainer.classList.remove('hidden'); 
 
-        window.print(); 
+        window.print(); // Trigger the browser's print dialog.
 
+        // Clean up after printing.
         printContainer.innerHTML = '';
         printContainer.classList.add('hidden');
     } else {
         console.error("Printable area not found for ID:", printableAreaId);
+        // Display a user-friendly error message.
         const tempErrorDiv = document.createElement('div');
         tempErrorDiv.textContent = 'Error preparing content for printing. Please try again.';
         tempErrorDiv.style.position = 'fixed';
@@ -1282,45 +1579,72 @@ function printSelectedWeekToPdf(printableAreaId) {
 }
 
 
-function renderOverview() {
+/**
+ * Renders the main "Overview" tab, which is the default view of the application.
+ * It includes today's training, this week's plan, pace guide, and general notes.
+ */
+async function renderOverview() {
     if (!marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.overview) return; 
     setActiveNav('nav-overview'); 
-    appContent.innerHTML = ''; 
-    const overviewSection = document.createElement('section');
-    overviewSection.id = "overview-content";
-    overviewSection.className = "space-y-6";
-    const uiTextOverview = marathonPlan.uiText.overview; 
-    overviewSection.innerHTML = `
-        <div class="md:flex md:space-x-6 space-y-6 md:space-y-0 mb-6">
-            <div id="todays-training-card" class="content-card p-4 md:flex-1 custom-rect-border-today"> 
-                <div id="todays-training-content"></div> 
+    appContent.innerHTML = `
+        <section id="overview-content" class="space-y-6">
+            <div class="md:flex md:space-x-6 space-y-6 md:space-y-0 mb-6">
+                <div id="todays-training-card" class="content-card p-4 md:flex-1 custom-rect-border-today"> 
+                    <div id="todays-training-content"></div> 
+                </div>
+                <div id="this-weeks-plan-card" class="content-card p-4 md:flex-1 custom-rect-border-this-week">
+                    <div id="this-weeks-plan-content"></div> 
+                </div>
             </div>
-            <div id="this-weeks-plan-card" class="content-card p-4 md:flex-1 custom-rect-border-this-week">
-                <div id="this-weeks-plan-content"></div> 
-            </div>
-        </div>
-        <div class="content-card overview-section-card">
-            <h2 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-3">${marathonPlan.paceGuide.title || uiTextOverview.paceGuideTitle || 'Pace Guide'}</h2>
-            ${createHtmlList(marathonPlan.paceGuide.paces)}
-        </div>
-        <div class="content-card overview-section-card">
-            <h2 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-3">${marathonPlan.generalNotes.title || uiTextOverview.generalNotesTitle || 'Important Notes'}</h2>
-            ${createHtmlList(marathonPlan.generalNotes.notes)}
-        </div>
-        `;
-    appContent.appendChild(overviewSection);
+        </section>`;
+
     renderTodaysTraining(); 
     renderThisWeeksPlan();
 }
 
+/**
+ * Fetches and displays Team Updates in a dismissible modal if they exist.
+ */
+async function showUpdatesModalIfNeeded() {
+    const modal = document.getElementById('updates-modal');
+    const container = document.getElementById('updates-modal-content');
+    if (!modal || !container) return;
+    
+    try {
+        await ensureCompanionData();
+        if (!companionData || !companionData.updates || companionData.updates.length === 0) {
+            return; // No updates, so we do nothing and the modal remains hidden.
+        }
+        
+        const list = companionData.updates.map(item => `
+        <div class="updates-card mb-4">
+            <h3 class="text-indigo-800 font-semibold text-xl mb-2">${item.title}</h3>
+            <ul class="list-disc list-inside space-y-1 text-stone-700">
+                ${item.content.map(line => `<li>${line}</li>`).join('')}
+            </ul>
+        </div>`).join('');
+        
+        container.innerHTML = `<h2 class="text-2xl font-bold text-center mb-4">Team Updates</h2><div class="space-y-4">${list}</div>`;
+        modal.classList.remove('hidden'); // Show the modal
+
+    } catch(error) {
+        console.error("Failed to show updates modal:", error);
+        // Do not show the modal if there's an error fetching data.
+    }
+}
+
+
+/**
+ * Renders the weekly mileage progression line chart inside a modal.
+ */
 function renderMileageChart() {
     if (!marathonPlan || !marathonPlan.mileageChartDataSource) {
         console.warn("Mileage chart data source not available.");
         return; 
     }
-    const chartCanvas = document.getElementById('mileageChart'); 
+    const chartCanvas = document.getElementById('mileageChartModalCanvas'); 
     if (!chartCanvas) {
-        console.warn("Mileage chart canvas not found.");
+        console.warn("Mileage chart canvas not found in modal.");
         return;
     }
     const labels = marathonPlan.mileageChartDataSource.map(item => item.label);
@@ -1344,40 +1668,8 @@ function renderMileageChart() {
     });
 }
 
-function renderNewsTab() {
-    if (!marathonPlan || !marathonPlan.uiText || !marathonPlan.newsSection) { 
-        appContent.innerHTML = "<p>News content is currently unavailable. Please check sheet configuration.</p>";
-        return;
-    }
-    setActiveNav('nav-news'); 
-    appContent.innerHTML = ''; 
-    const newsSectionContainer = document.createElement('section');
-    newsSectionContainer.id = "news-content";
-    newsSectionContainer.className = "space-y-6";
 
-    if (marathonPlan.newsSection && Array.isArray(marathonPlan.newsSection) && marathonPlan.newsSection.length > 0) {
-        marathonPlan.newsSection.forEach(newsItem => {
-            if (newsItem && newsItem.title && Array.isArray(newsItem.content)) {
-                const newsItemDiv = document.createElement('div');
-                newsItemDiv.className = 'content-card news-section-card'; 
-                newsItemDiv.innerHTML = `
-                    <h2 class="text-xl sm:text-2xl font-semibold text-indigo-700 mb-3">${newsItem.title}</h2>
-                    ${createHtmlList(newsItem.content)}
-                `;
-                newsSectionContainer.appendChild(newsItemDiv);
-            }
-        });
-    } else {
-        const noNewsMessage = (marathonPlan.uiText && marathonPlan.uiText.news && marathonPlan.uiText.news.noNewsAvailable) 
-                              ? marathonPlan.uiText.news.noNewsAvailable 
-                              : "No news items to display at the moment.";
-        newsSectionContainer.innerHTML = `<div class="content-card news-section-card"><p>${noNewsMessage}</p></div>`;
-    }
-    
-    appContent.appendChild(newsSectionContainer);
-}
-
-
+// Functions to get dynamic CSS classes based on the training phase name.
 function getPhaseButtonClass(phaseName) {
     const nameLower = phaseName.toLowerCase();
     if (nameLower.includes("preseason")) return "phase-button-preseason";
@@ -1399,7 +1691,7 @@ function getPhaseTitleTextColorClass(phaseName) {
     if (nameLower.includes("preseason")) return "text-gray-600"; 
     if (nameLower.includes("base")) return "text-sky-700";   
     if (nameLower.includes("specific")) return "text-green-700"; 
-    if (nameLower.includes("taper")) return "text-red-700";    
+    if (nameLower.includes("taper")) return "text-red-700";   
     return "text-sky-700"; 
 }
 function getPhaseTextColorClass(phaseName) {
@@ -1411,6 +1703,9 @@ function getPhaseTextColorClass(phaseName) {
     return "week-button-text-base"; 
 }
 
+/**
+ * Renders the "Training Plan" tab, allowing users to navigate through phases and weeks.
+ */
 function renderTrainingPlan() {
     if (!marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.plan) return; 
     setActiveNav('nav-plan'); 
@@ -1422,7 +1717,6 @@ function renderTrainingPlan() {
         `<button class="phase-button ${getPhaseButtonClass(phase.name)}" data-phase-index="${index}">${phase.name}</button>`
     ).join('');
     const selectPhaseTitle = marathonPlan.uiText.plan.selectPhaseTitle || "Select Training Phase:";
-    const mileageProgressionTitleText = marathonPlan.uiText.overview?.mileageProgressionTitle || 'Overall Mileage Progression';
     trainingPlanSection.innerHTML = `
         <div>
             <h2 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-4">${selectPhaseTitle}</h2>
@@ -1430,13 +1724,7 @@ function renderTrainingPlan() {
             <div id="phase-details" class="space-y-4"><p class="text-stone-600 italic">Select a phase to see its details.</p></div>
         </div>
         <div id="week-details-container" class="mt-6"></div>
-        <div class="content-card overview-section-card mt-6"> 
-            <h2 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-3">${mileageProgressionTitleText}</h2>
-            <div class="chart-container bg-white p-2 rounded-md shadow">
-                <canvas id="mileageChart"></canvas>
-            </div>
-            <p class="text-xs text-stone-500 mt-2 text-center">Hover over points to see weekly mileage.</p>
-        </div>`;
+        `;
     appContent.appendChild(trainingPlanSection);
     document.querySelectorAll('#phase-navigation .phase-button').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -1445,13 +1733,17 @@ function renderTrainingPlan() {
             renderPhaseDetails(parseInt(e.target.dataset.phaseIndex)); 
         });
     });
+    // Automatically select and render the first phase.
     if (marathonPlan.phases && marathonPlan.phases.length > 0) {
         const firstPhaseButton = document.querySelector('#phase-navigation .phase-button');
         if (firstPhaseButton) { firstPhaseButton.classList.add('active'); renderPhaseDetails(0); }
     }
-    renderMileageChart(); 
 }
 
+/**
+ * Renders the details for a selected training phase, including week buttons.
+ * @param {number} phaseIndex The index of the phase to render.
+ */
 function renderPhaseDetails(phaseIndex) {
     if (!marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.plan) return; 
     const phase = marathonPlan.phases[phaseIndex];
@@ -1483,6 +1775,7 @@ function renderPhaseDetails(phaseIndex) {
 
     document.querySelectorAll(`#week-navigation-${phaseIndex} .week-button`).forEach(button => {
         button.addEventListener('click', (e) => {
+            // Manage active state styling for week buttons.
             document.querySelectorAll(`#week-navigation-${phaseIndex} .week-button`).forEach(btn => {
                 btn.classList.remove('active');
                 const pIdxForClass = parseInt(btn.dataset.phaseIndex); 
@@ -1496,6 +1789,7 @@ function renderPhaseDetails(phaseIndex) {
         });
     });
 
+    // Automatically select and render the first week of the phase.
     if (phase.weeks && phase.weeks.length > 0) {
         const firstWeekButton = document.querySelector(`#week-navigation-${phaseIndex} .week-button`);
         if (firstWeekButton) { 
@@ -1506,6 +1800,12 @@ function renderPhaseDetails(phaseIndex) {
     }
 }
 
+/**
+ * Gets a formatted date range string for a given week.
+ * @param {object} weekObject The week object from the plan data.
+ * @param {string} phaseName The name of the phase this week belongs to.
+ * @returns {string} A formatted string like "Jul 8 - 14" or "Week 5".
+ */
 function getWeekDateRangeString(weekObject, phaseName) {
     if (!datedTrainingPlan || datedTrainingPlan.length === 0 ) { 
         return `Week ${weekObject.weekNum}`;
@@ -1525,6 +1825,11 @@ function getWeekDateRangeString(weekObject, phaseName) {
     return `Week ${weekObject.weekNum}`; 
 }
 
+/**
+ * Extracts a display-friendly kilometer value from a string (e.g., "60-70" becomes "70km").
+ * @param {string} totalKmString The string representing total kilometers for a week.
+ * @returns {string} The formatted kilometer string.
+ */
 function getDisplayKm(totalKmString) {
     if (!totalKmString || typeof totalKmString !== 'string') return 'N/A';
     const rangeMatch = totalKmString.match(/(\d+)\s*-\s*(\d+)/); if (rangeMatch) return `${rangeMatch[2]}km`;
@@ -1532,6 +1837,11 @@ function getDisplayKm(totalKmString) {
     return totalKmString; 
 }
 
+/**
+ * Renders the detailed schedule for a specific week.
+ * @param {number} phaseIndex The index of the phase.
+ * @param {number} weekIndex The index of the week within the phase.
+ */
 function renderWeekDetails(phaseIndex, weekIndex) {
     if (!marathonPlan) return; 
     const week = marathonPlan.phases[phaseIndex]?.weeks[weekIndex]; 
@@ -1558,13 +1868,27 @@ function renderWeekDetails(phaseIndex, weekIndex) {
     
     const weekDetailsId = `week-details-printable-${phaseIndex}-${weekIndex}`;
 
+    const paceGuideHtml = `<div class="content-card overview-section-card mt-6">
+        <h2 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-3">${marathonPlan.paceGuide.title || 'Pace Guide'}</h2>
+        ${createHtmlList(marathonPlan.paceGuide.paces)}
+    </div>`;
+
+    const generalNotesHtml = `<div class="content-card overview-section-card mt-6">
+        <h2 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-3">${marathonPlan.generalNotes.title || 'Important Notes'}</h2>
+        ${createHtmlList(marathonPlan.generalNotes.notes)}
+    </div>`;
+
     if(weekDetailsContainer) weekDetailsContainer.innerHTML = `
-        <div class="content-card mt-4" id="${weekDetailsId}"> <div class="flex justify-between items-center mb-2">
+        <div class="content-card mt-4" id="${weekDetailsId}"> 
+            <div class="flex justify-between items-center mb-2">
                 <h4 class="text-lg font-semibold text-sky-700">Week ${week.weekNum} (Total: ${getDisplayKm(week.totalKm)})</h4>
-                <button onclick="printSelectedWeekToPdf('${weekDetailsId}')" class="pdf-button no-print"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M5 2.5A2.5 2.5 0 0 1 7.5 0h5A2.5 2.5 0 0 1 15 2.5V5h-2.55a3 3 0 0 0-4.9 0H5V2.5zM10 6a2 2 0 0 0-1.936 1.5H5V15a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7.5h-3.064A2 2 0 0 0 10 6zm0 2a.75.75 0 0 1 .75.75v.032l1.533.306a.75.75 0 0 1-.293 1.455l-1.68-.335a.75.75 0 0 1-.59-.518L9.25 8.75A.75.75 0 0 1 10 8z" clip-rule="evenodd" /></svg>
-                    PDF
-                </button>
+                <div class="flex items-center gap-2">
+                    <button id="showMileageChartBtn" class="bg-teal-500 text-white text-xs font-bold py-1 px-3 rounded-full hover:bg-teal-600 transition-colors">Mileage Chart</button>
+                    <button onclick="printSelectedWeekToPdf('${weekDetailsId}')" class="pdf-button no-print"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M5 2.5A2.5 2.5 0 0 1 7.5 0h5A2.5 2.5 0 0 1 15 2.5V5h-2.55a3 3 0 0 0-4.9 0H5V2.5zM10 6a2 2 0 0 0-1.936 1.5H5V15a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7.5h-3.064A2 2 0 0 0 10 6zm0 2a.75.75 0 0 1 .75.75v.032l1.533.306a.75.75 0 0 1-.293 1.455l-1.68-.335a.75.75 0 0 1-.59-.518L9.25 8.75A.75.75 0 0 1 10 8z" clip-rule="evenodd" /></svg>
+                        PDF
+                    </button>
+                </div>
             </div>
             <div class="overflow-x-auto rounded-lg border border-stone-200">
                 <table class="schedule-table min-w-full">
@@ -1573,9 +1897,25 @@ function renderWeekDetails(phaseIndex, weekIndex) {
                 </table>
             </div>
             ${week.notes ? `<p class="text-sm italic mt-3 p-3 bg-stone-100 rounded-md"><strong class="text-black text-xs">Weekly Notes:</strong> <span class="text-stone-800 text-sm">${week.notes}</span></p>` : ''}
-        </div>`;
+        </div>
+        ${paceGuideHtml}
+        ${generalNotesHtml}
+        `;
+    
+    document.getElementById('showMileageChartBtn').addEventListener('click', () => {
+        const modal = document.getElementById('mileage-chart-modal');
+        if(modal) {
+            modal.classList.remove('hidden');
+            renderMileageChart(); // Now call the chart render function
+        }
+    });
 }
 
+/**
+ * Gets a CSS class for the calendar day thumbnail based on the activity type.
+ * @param {string} activityText The description of the activity.
+ * @returns {string} A CSS class name.
+ */
 function getActivityThumbnailClass(activityText) {
     const lowerActivity = activityText.toLowerCase();
 
@@ -1591,6 +1931,9 @@ function getActivityThumbnailClass(activityText) {
     return "activity-thumbnail-default"; 
 }
 
+/**
+ * Renders the "Calendar" tab.
+ */
 function renderCalendarTab() {
     if (!marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.calendar) return; 
     setActiveNav('nav-calendar'); 
@@ -1619,23 +1962,21 @@ function renderCalendarTab() {
             <div id="calendar-grid-container" class="calendar-grid"></div>
         </div>`;
     appContent.appendChild(calendarSection);
+    // Add event listeners for month navigation.
     document.getElementById('prevMonthBtn').addEventListener('click', () => { calendarCurrentDisplayDate.setMonth(calendarCurrentDisplayDate.getMonth() - 1); renderCalendarGrid(); document.getElementById('calendar-day-details-content').innerHTML = ''; document.getElementById('calendar-selected-day-header').innerHTML = ''; });
     document.getElementById('nextMonthBtn').addEventListener('click', () => { calendarCurrentDisplayDate.setMonth(calendarCurrentDisplayDate.getMonth() + 1); renderCalendarGrid(); document.getElementById('calendar-day-details-content').innerHTML = ''; document.getElementById('calendar-selected-day-header').innerHTML = ''; });
     
-    if (marathonPlan && marathonPlan.settings && marathonPlan.settings.planStartDate) {
-        const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
-        if (isValidDate(planStartDate)) {
-            calendarCurrentDisplayDate = new Date(planStartDate.getFullYear(), planStartDate.getMonth(), 1);
-        }
-    } else {
-        calendarCurrentDisplayDate = new Date(); 
-        calendarCurrentDisplayDate.setDate(1);
-    }
+    // Set the initial calendar view to the current month.
+    calendarCurrentDisplayDate = new Date();
+    calendarCurrentDisplayDate.setDate(1);
 
     renderCalendarGrid(); 
     renderSelectedCalendarDayDetails(new Date()); 
 }
 
+/**
+ * Renders the grid of days for the currently selected month in the calendar.
+ */
 function renderCalendarGrid() {
     const gridContainer = document.getElementById('calendar-grid-container');
     const monthYearDisplay = document.getElementById('currentMonthYear');
@@ -1645,11 +1986,13 @@ function renderCalendarGrid() {
     monthYearDisplay.textContent = calendarCurrentDisplayDate.toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); 
     const firstDayOfMonth = new Date(year, month, 1); const lastDayOfMonth = new Date(year, month + 1, 0);
     const daysInMonth = lastDayOfMonth.getDate();
-    let startingDayOfWeek = firstDayOfMonth.getDay(); if (startingDayOfWeek === 0) startingDayOfWeek = 6; else startingDayOfWeek--;
+    let startingDayOfWeek = firstDayOfMonth.getDay(); if (startingDayOfWeek === 0) startingDayOfWeek = 6; else startingDayOfWeek--; // Monday as start of week.
     const dayHeaders = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     dayHeaders.forEach(header => { const hc = document.createElement('div'); hc.className = 'calendar-header'; hc.textContent = header; gridContainer.appendChild(hc); });
+    // Add empty cells for days before the 1st of the month.
     for (let i = 0; i < startingDayOfWeek; i++) { const ec = document.createElement('div'); ec.className = 'calendar-day other-month'; gridContainer.appendChild(ec); }
     const today = new Date(); today.setHours(0,0,0,0); 
+    // Create a cell for each day of the month.
     for (let day = 1; day <= daysInMonth; day++) {
         const cell = document.createElement('div'); cell.className = 'calendar-day';
         const currentDateInLoop = new Date(year, month, day); currentDateInLoop.setHours(0,0,0,0);
@@ -1673,6 +2016,10 @@ function renderCalendarGrid() {
     }
 }
 
+/**
+ * Renders the details for a specific day when clicked on the calendar.
+ * @param {Date} date The date for which to show details.
+ */
 function renderSelectedCalendarDayDetails(date) {
     const detailsContainer = document.getElementById('calendar-day-details-content');
     const headerContainer = document.getElementById('calendar-selected-day-header');
@@ -1702,6 +2049,9 @@ function renderSelectedCalendarDayDetails(date) {
     }
 }
 
+/**
+ * Renders the "Race" tab, showing race details, elevation chart, and strategies.
+ */
 function renderRaceTab() {
     if (!marathonPlan || !marathonPlan.uiText || !marathonPlan.uiText.race || !marathonPlan.settings) {
         appContent.innerHTML = "<p>Race information is currently unavailable. Please check sheet configuration.</p>";
@@ -1720,6 +2070,7 @@ function renderRaceTab() {
 
     let tacticsHtml = `<h3 class="text-xl font-semibold text-violet-700 mb-3">${uiTextRace.tacticsTitle || "Race Strategy & Tactics"}</h3>`;
     
+    // Build the race tactics section from the plan data.
     if (marathonPlan.raceTactics) {
         if (marathonPlan.raceTactics.pacing && Array.isArray(marathonPlan.raceTactics.pacing) && marathonPlan.raceTactics.pacing.length > 0) {
             tacticsHtml += `<div class="mb-4"><h4 class="text-lg font-medium text-violet-600 mb-1">${uiTextRace.pacingSectionTitle || "Pacing Strategy"}</h4>${createHtmlList(marathonPlan.raceTactics.pacing)}</div>`;
@@ -1765,6 +2116,9 @@ function renderRaceTab() {
     renderRaceElevationChart();
 }
 
+/**
+ * Renders the race elevation profile chart.
+ */
 function renderRaceElevationChart() {
     if (!marathonPlan || !marathonPlan.raceElevationData || marathonPlan.raceElevationData.length === 0) {
         const container = document.getElementById('raceElevationChartContainer');
@@ -1815,7 +2169,7 @@ function renderRaceElevationChart() {
                     title: { display: true, text: 'Kilometer of Race', font: { weight: '500' } },
                     ticks: { 
                         autoSkip: true, 
-                        maxTicksLimit: Math.ceil((marathonPlan.settings.raceDistanceKm || 21) / 5)
+                        maxTicksLimit: Math.ceil((marathonPlan.settings.raceDistanceKm || 21) / 5) // Show ticks approx every 5km.
                     } 
                 }
             },
@@ -1836,8 +2190,168 @@ function renderRaceElevationChart() {
     });
 }
 
+// --- START: COMPANION & INFO APP FUNCTIONS ---
 
+/**
+ * Ensures the companion app data is fetched and stored globally.
+ * @returns {Promise<void>}
+ */
+async function ensureCompanionData() {
+    if (companionData) {
+        return; // Data already loaded
+    }
+    const response = await fetch(companionDataUrl);
+    if (!response.ok) throw new Error(`Companion data network response error (status: ${response.status})`);
+    
+    const data = await response.json();
+    if (data.error) throw new Error(`Data error from Companion Google Sheet: ${data.error}`);
+    
+    companionData = data;
+}
+
+/**
+ * Renders the companion tab content.
+ */
+async function renderCompanionTab() {
+    setActiveNav('nav-companion');
+    appContent.innerHTML = `
+        <div id="companion-app-container">
+             <div id="companion-loading-message">
+                <svg class="animate-spin h-8 w-8 text-sky-600 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Loading team data...
+            </div>
+            <div id="companion-error-message" class="hidden"></div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-800 mt-2 text-center mb-6">
+                <span class="text-sky-600">Team</span> <span class="text-emerald-600">Companion</span>
+            </h2>
+            <nav id="companion-navigation" class="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4 pb-4 border-b-2 border-slate-200 hidden">
+                <button id="comp-nav-drills" class="companion-nav-button drills">Drills</button>
+                <button id="comp-nav-mobility" class="companion-nav-button mobility">Mobility</button>
+                <button id="comp-nav-strength" class="companion-nav-button strength">Strength</button>
+            </nav>
+            <div id="companion-content"></div>
+        </div>
+    `;
+
+    try {
+        await ensureCompanionData();
+        document.getElementById('companion-loading-message').classList.add('hidden');
+        document.getElementById('companion-navigation').classList.remove('hidden');
+
+        document.getElementById('comp-nav-drills').addEventListener('click', renderCompanionDrills);
+        document.getElementById('comp-nav-mobility').addEventListener('click', renderCompanionMobility);
+        document.getElementById('comp-nav-strength').addEventListener('click', renderCompanionStrength);
+        
+        renderCompanionDrills(); // Load drills by default
+    } catch (error) {
+        console.error('Failed to initialize companion app:', error);
+        const loadingMsg = document.getElementById('companion-loading-message');
+        const errorMsg = document.getElementById('companion-error-message');
+        if (loadingMsg) loadingMsg.classList.add('hidden');
+        if (errorMsg) {
+            errorMsg.textContent = `Error: ${error.message}`;
+            errorMsg.classList.remove('hidden');
+        }
+    }
+}
+
+
+function setActiveCompanionNav(activeId) {
+    document.querySelectorAll('.companion-nav-button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.id === activeId) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+function renderCompanionDrills() {
+    setActiveCompanionNav('comp-nav-drills');
+    const contentDiv = document.getElementById('companion-content');
+    if(!contentDiv || !companionData) return;
+    const grid = companionData.drills.map(item => createExerciseCard(item, 'drills')).join('');
+    contentDiv.innerHTML = `<h2 class="text-2xl font-bold text-emerald-700 mb-4">Running Drills</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${grid}</div>`;
+}
+
+function renderCompanionMobility() {
+    setActiveCompanionNav('comp-nav-mobility');
+    const contentDiv = document.getElementById('companion-content');
+    if(!contentDiv || !companionData) return;
+    const grid = companionData.mobility.map(item => createExerciseCard(item, 'mobility')).join('');
+    contentDiv.innerHTML = `<h2 class="text-2xl font-bold text-sky-700 mb-4">Mobility Exercises</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${grid}</div>`;
+}
+
+function renderCompanionStrength() {
+    setActiveCompanionNav('comp-nav-strength');
+    const contentDiv = document.getElementById('companion-content');
+    if(!contentDiv || !companionData) return;
+    const grid = companionData.strength.map(item => createExerciseCard(item, 'strength')).join('');
+    contentDiv.innerHTML = `<h2 class="text-2xl font-bold text-amber-700 mb-4">Strength Exercises</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${grid}</div>`;
+}
+
+
+function createExerciseCard(item, type) {
+    let details = '';
+    if (type === 'drills') details = item.reps || '';
+    if (type === 'mobility') details = item.duration || '';
+    if (type === 'strength') details = `${item.sets || ''} sets of ${item.reps || item.duration}`;
+
+    return `
+        <div class="exercise-card">
+            <div class="flex justify-between items-start flex-wrap gap-2">
+                <h3 class="text-lg font-semibold">${item.name}</h3>
+                <span class="details details-${type} flex-shrink-0">${details}</span>
+            </div>
+            <p class="text-stone-600 mt-2 mb-4">${item.description}</p>
+            <a href="${item.videoUrl || '#'}" class="video-link" target="_blank" rel="noopener noreferrer">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                 Watch Video
+            </a>
+        </div>
+    `;
+}
+
+function renderInfoTab() {
+    setActiveNav('nav-info');
+    appContent.innerHTML = ''; 
+
+    if (!marathonPlan || !marathonPlan.newsSection) { 
+        appContent.innerHTML = "<p>Info content is currently unavailable.</p>";
+        return;
+    }
+    
+    let infoHtml = '';
+    const newsSection = marathonPlan.newsSection;
+
+    if (newsSection && Array.isArray(newsSection) && newsSection.length > 0) {
+        newsSection.forEach(newsItem => {
+            if (newsItem && newsItem.title && Array.isArray(newsItem.content)) {
+                infoHtml += `
+                    <div class="content-card news-section-card mb-6">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-indigo-700 mb-3">${newsItem.title}</h3>
+                        ${createHtmlList(newsItem.content)}
+                    </div>`;
+            }
+        });
+    } else {
+        const noNewsMessage = (marathonPlan.uiText && marathonPlan.uiText.news && marathonPlan.uiText.news.noNewsAvailable) 
+                                ? marathonPlan.uiText.news.noNewsAvailable 
+                                : "No information to display at the moment.";
+        infoHtml = `<div class="content-card news-section-card"><p>${noNewsMessage}</p></div>`;
+    }
+    
+    appContent.innerHTML = `<h2 class="text-2xl font-bold text-indigo-700 mb-4">Info</h2><div class="space-y-4">${infoHtml}</div>`;
+}
+
+// --- END: COMPANION & INFO APP FUNCTIONS ---
+
+
+// Main entry point when the DOM is fully loaded.
 document.addEventListener('DOMContentLoaded', () => {
+    // Set initial text values before any data is fetched.
     document.getElementById('loginButton').textContent = 'Enter the Run';
     document.getElementById('mainTitleProject').textContent = 'project:';
     document.getElementById('mainTitleMarathon').textContent = 'Marathon';
@@ -1845,16 +2359,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('appHeaderTitleMarathon').textContent = 'Marathon';
     document.getElementById('appSubtitle').textContent = 'Your interactive guide to marathon training.';
     document.getElementById('nav-overview').textContent = 'Plan Overview';
-    document.getElementById('nav-news').textContent = 'News';
     document.getElementById('nav-plan').textContent = 'Training Plan';
     document.getElementById('nav-calendar').textContent = 'Calendar';
     document.getElementById('nav-race').textContent = 'Race'; 
+    document.getElementById('nav-companion').textContent = 'Companion';
+    document.getElementById('nav-info').textContent = 'Info';
 
     const loginButton = document.getElementById('loginButton');
     if(loginButton) loginButton.addEventListener('click', handleLogin);
     const userIdInput = document.getElementById('userIdInput');
+    // Allow login by pressing Enter key.
     if(userIdInput) userIdInput.addEventListener('keypress', (event) => { if (event.key === 'Enter') { event.preventDefault(); handleLogin(); }}); 
     
+    // PWA install prompt logic.
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredInstallPrompt = e;
@@ -1877,7 +2394,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.addEventListener('appinstalled', () => {
+   window.addEventListener('appinstalled', () => {
         if (installPwaButton) {
             installPwaButton.classList.add('hidden');
         }
@@ -1885,12 +2402,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('PWA was installed');
     });
 
+    // Pre-fill the User ID input if it was stored previously.
     const lastUserId = localStorage.getItem('lastUserID');
     if (lastUserId) {
         const userIdInputEl = document.getElementById('userIdInput');
         if (userIdInputEl) userIdInputEl.value = lastUserId; 
     }
     
+    // Show the login screen by default.
     loginContainer.classList.remove('hidden');
     mainAppWrapper.classList.add('hidden');
 });
