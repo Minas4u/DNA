@@ -20,7 +20,7 @@ const userSpecificDataSources = {
     "EVA": "tba",
     "ELENI": "https://script.google.com/macros/s/AKfycbwHzz_ww7-0Ucb0METuQoaQLVDyOy505HE7SmMyLggvvIcZMIhMGe-BMBXyh8oJC6mt/exec",
     "KONA": "tba",
-    "PLIAXA": "https://script.google.com/macros/s/AKfycbwIsM1dWmt2BxsYuK9ccfi-vEKDXlIu9WPlEGHZstyp4YYglrHZvTqaHkBwHeucX4-a/exec",
+    "NIKOL": "tba",
     "IOANNA": "tba",
 };
 
@@ -31,6 +31,7 @@ const companionDataUrl = "https://script.google.com/macros/s/AKfycbw3fpGf2W8ANwI
 let marathonPlan = null; // Stores the entire JSON object from the Google Sheet.
 let datedTrainingPlan = []; // Stores each day of the plan with a specific date.
 let currentRaceDate = null; // The calculated date of the race.
+let currentTodayViewDate = null; // Stores the date currently displayed in the "Today's Training" card.
 let calendarCurrentDisplayDate = new Date(); // The month/year the calendar is currently showing.
 let raceElevationChartInstance = null; // Chart.js instance for the elevation profile.
 let mileageChartInstance = null; // Chart.js instance for the weekly mileage.
@@ -252,6 +253,14 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme('light');
     }
     // --- End of Dark Mode Toggle ---
+
+    // Initialize modals for animation
+    if (mileageChartModal) {
+        mileageChartModal.classList.add('modal-base-style', 'modal-hidden-state');
+    }
+    if (updatesModal) {
+        updatesModal.classList.add('modal-base-style', 'modal-hidden-state');
+    }
 });
 
 /**
@@ -273,21 +282,33 @@ function initializeApp() {
 
     // Add event listeners for the mileage chart modal
     if(mileageChartModal && closeMileageChartBtn) {
-        closeMileageChartBtn.addEventListener('click', () => mileageChartModal.classList.add('hidden'));
+        closeMileageChartBtn.addEventListener('click', () => {
+            mileageChartModal.classList.add('modal-hidden-state');
+            mileageChartModal.classList.remove('modal-visible-state');
+            // Optional: setTimeout(() => mileageChartModal.classList.add('hidden'), 250); // If display:none is still desired
+        });
         mileageChartModal.addEventListener('click', (e) => {
             if (e.target.id === 'mileage-chart-modal') {
-                mileageChartModal.classList.add('hidden');
+                mileageChartModal.classList.add('modal-hidden-state');
+                mileageChartModal.classList.remove('modal-visible-state');
+                // Optional: setTimeout(() => mileageChartModal.classList.add('hidden'), 250);
             }
         });
     }
 
     // Add event listeners for the new updates modal
     if(updatesModal && closeUpdatesModalBtn) {
-        closeUpdatesModalBtn.addEventListener('click', () => updatesModal.classList.add('hidden'));
+        closeUpdatesModalBtn.addEventListener('click', () => {
+            updatesModal.classList.add('modal-hidden-state');
+            updatesModal.classList.remove('modal-visible-state');
+            // Optional: setTimeout(() => updatesModal.classList.add('hidden'), 250);
+        });
         updatesModal.addEventListener('click', (e) => {
              // Closes modal if user clicks on the background overlay
             if (e.target.id === 'updates-modal') {
-                updatesModal.classList.add('hidden');
+                updatesModal.classList.add('modal-hidden-state');
+                updatesModal.classList.remove('modal-visible-state');
+                // Optional: setTimeout(() => updatesModal.classList.add('hidden'), 250);
             }
         });
     }
@@ -295,6 +316,10 @@ function initializeApp() {
     renderOverview(); // Render the default "Overview" tab.
     if(mainAppWrapper) mainAppWrapper.classList.remove('hidden');
     if(loginContainer) loginContainer.classList.add('hidden');
+
+    // Initialize currentTodayViewDate to today
+    currentTodayViewDate = new Date();
+    currentTodayViewDate.setHours(0, 0, 0, 0);
 
     // Show the updates modal after the main app is visible.
     showUpdatesModalIfNeeded();
@@ -529,17 +554,37 @@ function renderTodaysTraining() {
         }
     }
 
-    const today = new Date();
-    today.setHours(0,0,0,0);
+    // Use currentTodayViewDate, default to actual today if not set
+    const displayDate = currentTodayViewDate ? new Date(currentTodayViewDate) : new Date();
+    displayDate.setHours(0,0,0,0);
+
     const todaysActivity = datedTrainingPlan.find(item => {
         const itemDate = new Date(item.date);
         itemDate.setHours(0,0,0,0);
-        return isSameDay(itemDate, today);
+        return isSameDay(itemDate, displayDate);
     });
 
     let activityContentHtml = '';
-    let titleHtml = `<h3 class="text-2xl font-semibold text-sky-700 mb-1 text-center">Today</h3>
-                               <p class="text-xs text-stone-500 text-center mb-3">${formatDate(today, { weekday: 'long', month: 'long', day: 'numeric' })}</p>`;
+    const isActualToday = isSameDay(displayDate, new Date(new Date().setHours(0,0,0,0)));
+    const titleText = isActualToday ? "Today" : formatDate(displayDate, { weekday: 'short' });
+
+    // Navigation arrows HTML
+    const navArrowsHtml = `
+        <div class="flex justify-between items-center w-full">
+            <button id="todayPrevDay" class="p-1 text-sky-700 hover:text-sky-500 disabled:opacity-30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <div class="text-center">
+                <h3 class="text-2xl font-semibold text-sky-700 mb-1">${titleText}</h3>
+                <p class="text-xs text-stone-500 mb-3">${formatDate(displayDate, { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+            </div>
+            <button id="todayNextDay" class="p-1 text-sky-700 hover:text-sky-500 disabled:opacity-30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+    `;
+
+    let titleHtml = `<div class="relative">${navArrowsHtml}</div>`;
     let notesBoxHtml = '';
     const todayCard = document.getElementById('todays-training-card'); // Re-fetch
 
@@ -572,12 +617,12 @@ function renderTodaysTraining() {
             `;
         }
     } else {
-        let message = "No training scheduled for today.";
+        let message = `No training scheduled for ${formatDate(displayDate, { month: 'short', day: 'numeric' })}.`;
         if (marathonPlan && marathonPlan.settings && marathonPlan.settings.planStartDate) {
             const planStartDate = new Date(marathonPlan.settings.planStartDate + "T00:00:00");
-            if (isValidDate(planStartDate) && today < planStartDate) {
+            if (isValidDate(planStartDate) && displayDate < planStartDate) {
                 message = `Plan starts on ${formatDate(planStartDate)}. No training scheduled yet.`;
-            } else if (currentRaceDate && isValidDate(currentRaceDate) && today > currentRaceDate) {
+            } else if (currentRaceDate && isValidDate(currentRaceDate) && displayDate > currentRaceDate) {
                  message = `Plan ended on ${formatDate(currentRaceDate)}. No training scheduled.`;
             }
         }
@@ -599,6 +644,54 @@ function renderTodaysTraining() {
         </div>
     `;
     container.innerHTML = titleHtml + activityContentHtml + notesBoxHtml + paceCalculatorHtml;
+
+    // Add event listeners for new navigation arrows
+    const prevDayBtn = document.getElementById('todayPrevDay');
+    const nextDayBtn = document.getElementById('todayNextDay');
+
+    if (prevDayBtn) {
+        prevDayBtn.addEventListener('click', () => {
+            if (currentTodayViewDate && datedTrainingPlan.length > 0) {
+                const firstPlanDate = new Date(datedTrainingPlan[0].date);
+                firstPlanDate.setHours(0,0,0,0);
+                if (!isSameDay(currentTodayViewDate, firstPlanDate)) {
+                    currentTodayViewDate = addDays(currentTodayViewDate, -1);
+                    renderTodaysTraining();
+                }
+            }
+        });
+    }
+    if (nextDayBtn) {
+        nextDayBtn.addEventListener('click', () => {
+            if (currentTodayViewDate && datedTrainingPlan.length > 0) {
+                const lastPlanDate = new Date(datedTrainingPlan[datedTrainingPlan.length - 1].date);
+                lastPlanDate.setHours(0,0,0,0);
+                if (!isSameDay(currentTodayViewDate, lastPlanDate)) {
+                    currentTodayViewDate = addDays(currentTodayViewDate, +1);
+                    renderTodaysTraining();
+                }
+            }
+        });
+    }
+
+    // Disable navigation buttons if at the start or end of the plan
+    if (datedTrainingPlan.length > 0) {
+        const firstPlanDate = new Date(datedTrainingPlan[0].date);
+        firstPlanDate.setHours(0,0,0,0);
+        const lastPlanDate = new Date(datedTrainingPlan[datedTrainingPlan.length - 1].date);
+        lastPlanDate.setHours(0,0,0,0);
+
+        if (prevDayBtn) {
+            prevDayBtn.disabled = isSameDay(displayDate, firstPlanDate);
+        }
+        if (nextDayBtn) {
+            nextDayBtn.disabled = isSameDay(displayDate, lastPlanDate);
+        }
+    } else {
+        if (prevDayBtn) prevDayBtn.disabled = true;
+        if (nextDayBtn) nextDayBtn.disabled = true;
+    }
+
 
     if (marathonPlan && marathonPlan.settings) {
         renderTodayPaces(marathonPlan.settings.defaultLt2Speed, todaysActivity);
@@ -779,7 +872,10 @@ async function showUpdatesModalIfNeeded() {
         </div>`).join('');
 
         container.innerHTML = `<h2 class="text-2xl font-bold text-center mb-4">Team Updates</h2><div class="space-y-4">${list}</div>`;
-        modal.classList.remove('hidden');
+        modal.classList.remove('hidden'); // Ensure it's not display:none for animation
+        // modal-base-style should already be on the element from DOMContentLoaded
+        modal.classList.remove('modal-hidden-state');
+        modal.classList.add('modal-visible-state');
 
     } catch(error) {
         console.error("Failed to show updates modal:", error);
@@ -994,7 +1090,10 @@ function renderWeekDetails(phaseIndex, weekIndex) {
     const showMileageChartBtnPlan = document.getElementById('showMileageChartBtnPlan'); // Re-fetch
     if(showMileageChartBtnPlan) showMileageChartBtnPlan.addEventListener('click', () => {
         if(mileageChartModal) {
-            mileageChartModal.classList.remove('hidden');
+            mileageChartModal.classList.remove('hidden'); // Ensure it's not display:none for animation
+            // modal-base-style should already be on the element from DOMContentLoaded
+            mileageChartModal.classList.remove('modal-hidden-state');
+            mileageChartModal.classList.add('modal-visible-state');
             renderMileageChart();
         }
     });
