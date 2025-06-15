@@ -30,6 +30,51 @@ const companionDataUrl = "https://script.google.com/macros/s/AKfycbw3fpGf2W8ANwI
 // Global variables to hold application state and data.
 let marathonPlan = null; // Stores the entire JSON object from the Google Sheet.
 let datedTrainingPlan = []; // Stores each day of the plan with a specific date.
+
+const marathonGreats = [
+    "Eliud Kipchoge", "Kelvin Kiptum", "Kenenisa Bekele", "Haile Gebrselassie",
+    "Samuel Wanjiru", "Abebe Bikila", "Wilson Kipsang", "Geoffrey Mutai",
+    "Dennis Kimetto", "Tsegaye Kebede", "Evans Chebet", "Tamirat Tola",
+    "Sisay Lemma", "Lawrence Cherono", "Khalid Khannouchi", "Abel Kirui",
+    "Gezahegne Abera", "Stephen Kiprotich", "Jaouad Gharib", "Patrick Makau",
+    "Moses Mosop", "Frank Shorter", "Lelisa Desisa", "Ghirmay Ghebreslassie",
+    "Stefano Baldini", "Brigid Kosgei", "Paula Radcliffe", "Catherine Ndereba",
+    "Tigist Assefa", "Sifan Hassan", "Mary Keitany", "Ruth Chepngetich",
+    "Peres Jepchirchir", "Joan Benoit Samuelson", "Grete Waitz", "Rosa Mota",
+    "Naoko Takahashi", "Constantina Diță", "Mizuki Noguchi", "Tiki Gelana",
+    "Derartu Tulu", "Fatuma Roba", "Irina Mikitenko", "Joyciline Jepkosgei",
+    "Hellen Obiri", "Yalemzerf Yehualaw", "Gete Wami", "Amane Beriso",
+    "Lornah Kiplagat", "Jemima Sumgong"
+];
+
+/**
+ * Shuffles an array in place using the Fisher-Yates algorithm.
+ * @param {Array} array The array to shuffle.
+ */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+}
+
+shuffleArray(marathonGreats); // Shuffle the list on script load
+
+const activityIconMap = {
+    'base': 'icons/base_run.svg',
+    'easy': 'icons/easy_run.svg',
+    'fartlek': 'icons/fartlek_run.svg',
+    'tempo': 'icons/tempo_run.svg',
+    'interval': 'icons/interval_run.svg',
+    'intervals': 'icons/interval_run.svg', // Alias for interval
+    'long': 'icons/long_run.svg',
+    'long run': 'icons/long_run.svg', // Alias for long run
+    'rest': 'icons/rest_day.svg',
+    'recovery': 'icons/easy_run.svg', // Assuming recovery runs use easy icon
+    // Consider adding 'strides', 'hills', 'race' if specific icons are made
+    // For now, they will not have an icon.
+};
+
 let currentRaceDate = null; // The calculated date of the race.
 let currentTodayViewDate = null; // Stores the date currently displayed in the "Today's Training" card.
 let calendarCurrentDisplayDate = new Date(); // The month/year the calendar is currently showing.
@@ -261,7 +306,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (updatesModal) {
         updatesModal.classList.add('modal-base-style', 'modal-hidden-state');
     }
+
+    populateAndScrollRunnersList(); // Populate and start scrolling names
 });
+
+/**
+ * Populates the #runners-list with names from marathonGreats,
+ * duplicates them for seamless scrolling, and applies the scrolling animation.
+ */
+function populateAndScrollRunnersList() {
+    const runnersListElement = document.getElementById('runners-list');
+    if (!runnersListElement) {
+        console.warn('Runners list element (#runners-list) not found.');
+        return;
+    }
+
+    // Clear any existing items
+    runnersListElement.innerHTML = '';
+
+    if (marathonGreats.length === 0) {
+        // Optionally display a message if the list is empty
+        // const li = document.createElement('li');
+        // li.textContent = "No names to display.";
+        // runnersListElement.appendChild(li);
+        return; // No need to proceed if there are no names
+    }
+
+    // 1. Populate the list with initial set of names
+    marathonGreats.forEach(name => {
+        const li = document.createElement('li');
+        li.textContent = name;
+        runnersListElement.appendChild(li);
+    });
+
+    // 2. Duplicate list items for seamless scrolling
+    //    Only duplicate if the container is visible (md:block implies it might be hidden on small screens)
+    const scrollWidget = document.getElementById('runners-scroll-widget');
+    if (scrollWidget && getComputedStyle(scrollWidget).display !== 'none') {
+        const listItems = runnersListElement.querySelectorAll('li');
+        if (listItems.length > 0) { // Check if items were actually added
+            listItems.forEach(item => {
+                runnersListElement.appendChild(item.cloneNode(true));
+            });
+        }
+    }
+
+    // 3. Add 'scrolling' class to start animation
+    //    Only add if there are items to scroll (which implies marathonGreats.length > 0)
+    if (runnersListElement.hasChildNodes()) { // Check if list is populated
+        runnersListElement.classList.add('scrolling');
+    }
+}
 
 /**
  * Initializes the main application after a successful login and data fetch.
@@ -270,59 +365,78 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeApp() {
     if(loadingMessageDiv) loadingMessageDiv.classList.add('hidden');
     if(errorMessageDiv) errorMessageDiv.classList.add('hidden');
-    if(appContent) appContent.innerHTML = '';
+    if(appContent) appContent.innerHTML = ''; // Clear previous content if any
 
-    // Add event listeners to the main navigation buttons.
-    if(navOverview) navOverview.addEventListener('click', renderOverview);
-    if(navPlan) navPlan.addEventListener('click', renderTrainingPlan);
-    if(navCalendar) navCalendar.addEventListener('click', renderCalendarTab);
-    if(navRace) navRace.addEventListener('click', renderRaceTab);
-    if(navCompanion) navCompanion.addEventListener('click', renderCompanionTab);
-    if(navInfo) navInfo.addEventListener('click', renderInfoTab);
+    // Start fade-out of login screen
+    if (loginContainer) {
+        loginContainer.classList.remove('screen-is-fading-in'); // Precaution
+        loginContainer.classList.add('screen-is-fading-out');
+    }
 
-    // Add event listeners for the mileage chart modal
-    if(mileageChartModal && closeMileageChartBtn) {
-        closeMileageChartBtn.addEventListener('click', () => {
-            mileageChartModal.classList.add('modal-hidden-state');
-            mileageChartModal.classList.remove('modal-visible-state');
-            // Optional: setTimeout(() => mileageChartModal.classList.add('hidden'), 250); // If display:none is still desired
-        });
-        mileageChartModal.addEventListener('click', (e) => {
-            if (e.target.id === 'mileage-chart-modal') {
+    setTimeout(() => {
+        if (loginContainer) {
+            loginContainer.classList.add('hidden'); // display:none after fade
+            loginContainer.classList.remove('screen-is-fading-out');
+        }
+
+        if (mainAppWrapper) {
+            mainAppWrapper.classList.remove('hidden'); // display:block/flex, but still opacity:0 due to CSS rule for #main-app-wrapper
+
+            // Brief delay for browser to render mainAppWrapper before starting fade-in
+            setTimeout(() => {
+                if (mainAppWrapper) { // Check again in case something went wrong
+                    mainAppWrapper.classList.remove('screen-is-fading-out'); // Precaution
+                    mainAppWrapper.classList.add('screen-is-fading-in'); // Start fade-in
+                }
+            }, 20);
+        }
+
+        // Original initializeApp logic (nav listeners, modal setup, initial render)
+        if(navOverview) navOverview.addEventListener('click', renderOverview);
+        if(navPlan) navPlan.addEventListener('click', renderTrainingPlan);
+        if(navCalendar) navCalendar.addEventListener('click', renderCalendarTab);
+        if(navRace) navRace.addEventListener('click', renderRaceTab);
+        if(navCompanion) navCompanion.addEventListener('click', renderCompanionTab);
+        if(navInfo) navInfo.addEventListener('click', renderInfoTab);
+
+        // Add event listeners for the mileage chart modal
+        if(mileageChartModal && closeMileageChartBtn) {
+            closeMileageChartBtn.addEventListener('click', () => {
                 mileageChartModal.classList.add('modal-hidden-state');
                 mileageChartModal.classList.remove('modal-visible-state');
-                // Optional: setTimeout(() => mileageChartModal.classList.add('hidden'), 250);
-            }
-        });
-    }
+            });
+            mileageChartModal.addEventListener('click', (e) => {
+                if (e.target.id === 'mileage-chart-modal') {
+                    mileageChartModal.classList.add('modal-hidden-state');
+                    mileageChartModal.classList.remove('modal-visible-state');
+                }
+            });
+        }
 
-    // Add event listeners for the new updates modal
-    if(updatesModal && closeUpdatesModalBtn) {
-        closeUpdatesModalBtn.addEventListener('click', () => {
-            updatesModal.classList.add('modal-hidden-state');
-            updatesModal.classList.remove('modal-visible-state');
-            // Optional: setTimeout(() => updatesModal.classList.add('hidden'), 250);
-        });
-        updatesModal.addEventListener('click', (e) => {
-             // Closes modal if user clicks on the background overlay
-            if (e.target.id === 'updates-modal') {
+        // Add event listeners for the new updates modal
+        if(updatesModal && closeUpdatesModalBtn) {
+            closeUpdatesModalBtn.addEventListener('click', () => {
                 updatesModal.classList.add('modal-hidden-state');
                 updatesModal.classList.remove('modal-visible-state');
-                // Optional: setTimeout(() => updatesModal.classList.add('hidden'), 250);
-            }
-        });
-    }
+            });
+            updatesModal.addEventListener('click', (e) => {
+                if (e.target.id === 'updates-modal') {
+                    updatesModal.classList.add('modal-hidden-state');
+                    updatesModal.classList.remove('modal-visible-state');
+                }
+            });
+        }
 
-    renderOverview(); // Render the default "Overview" tab.
-    if(mainAppWrapper) mainAppWrapper.classList.remove('hidden');
-    if(loginContainer) loginContainer.classList.add('hidden');
+        renderOverview(); // Render the default "Overview" tab.
 
-    // Initialize currentTodayViewDate to today
-    currentTodayViewDate = new Date();
-    currentTodayViewDate.setHours(0, 0, 0, 0);
+        // Initialize currentTodayViewDate to today
+        currentTodayViewDate = new Date();
+        currentTodayViewDate.setHours(0, 0, 0, 0);
 
-    // Show the updates modal after the main app is visible.
-    showUpdatesModalIfNeeded();
+        // Show the updates modal after the main app is visible.
+        showUpdatesModalIfNeeded();
+
+    }, 400); // Matches CSS transition duration (0.4s) for loginContainer fade-out
 }
 
 // --- LOGIN & DATA FETCHING ---
@@ -337,18 +451,35 @@ async function handleLogin() {
     loginErrorMessageDiv.classList.add('hidden');
     loginLoadingMessageDiv.classList.remove('hidden');
     currentWebAppUrl = userSpecificDataSources[userId];
+
+    const loginButtonWrapper = document.getElementById('loginButtonWrapper'); // Get the wrapper
+
     if (currentWebAppUrl) {
         localStorage.setItem('lastUserID', userId); // Remember user for next visit.
         localStorage.setItem('lastWebAppUrl', currentWebAppUrl);
+
+        if (loginButtonWrapper) {
+            loginButtonWrapper.classList.add('animate-runners');
+        }
+
         const success = await fetchMarathonPlan(currentWebAppUrl);
+
+        if (loginButtonWrapper) {
+            loginButtonWrapper.classList.remove('animate-runners'); // Stop animation
+        }
+
         if (success) initializeApp();
         else {
             loginLoadingMessageDiv.classList.add('hidden');
+            // Ensure animation stops on error too, though already handled above
         }
     } else {
         loginErrorMessageDiv.textContent = "Invalid User ID. Try again or contact admin.";
         loginErrorMessageDiv.classList.remove('hidden');
         loginLoadingMessageDiv.classList.add('hidden');
+        if (loginButtonWrapper) { // Also stop animation if User ID was invalid from start
+            loginButtonWrapper.classList.remove('animate-runners');
+        }
     }
 }
 
@@ -565,6 +696,7 @@ function renderTodaysTraining() {
     });
 
     let activityContentHtml = '';
+    let iconHtml = ''; // Initialize iconHtml
     const isActualToday = isSameDay(displayDate, new Date(new Date().setHours(0,0,0,0)));
     const titleText = isActualToday ? "Today" : formatDate(displayDate, { weekday: 'short' });
 
@@ -595,8 +727,23 @@ function renderTodaysTraining() {
     if (todaysActivity) {
         const activityTextForDisplay = todaysActivity.activity.replace(/^[^:]+:\s*/, '');
         const activityDescriptionOnly = todaysActivity.activity.replace(/^[^:]+:\s*/, '').trim();
-        const firstWord = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
-        const colorClass = getActivityTextColorClass(firstWord);
+        const firstWordLower = activityDescriptionOnly.split(" ")[0].toLowerCase().replace(/:$/, '');
+        const colorClass = getActivityTextColorClass(firstWordLower);
+
+        // Icon logic
+        let matchedKey = null;
+        if (activityIconMap[firstWordLower]) {
+            matchedKey = firstWordLower;
+        } else { // Fallback for multi-word keys or common variations
+            const activityDescLower = activityDescriptionOnly.toLowerCase();
+            if (activityDescLower.includes('long run')) matchedKey = 'long run';
+            else if (activityDescLower.includes('interval')) matchedKey = 'interval';
+            // Add more specific fallbacks if needed e.g. "recovery run" -> "recovery"
+        }
+        const iconPath = matchedKey ? activityIconMap[matchedKey] : null;
+        if (iconPath) {
+            iconHtml = `<img src="${iconPath}" alt="${matchedKey} icon" class="training-activity-icon ml-2">`; // Added ml-2 for spacing
+        }
 
         const lt2PaceString = marathonPlan?.settings?.defaultLt2Speed || "N/A";
         const paceString = getPaceStringForActivity(todaysActivity.activity, lt2PaceString);
@@ -606,7 +753,10 @@ function renderTodaysTraining() {
             <div class="todays-activity-box">
                 <p><strong class="activity-text ${colorClass}">${activityTextForDisplay}</strong></p>
                 ${paceHtml}
-                <p class="text-xs text-stone-500 mt-2">Phase: ${todaysActivity.phaseName} | Week: ${todaysActivity.weekNum}</p>
+                <div class="activity-meta-container flex items-center mt-2">
+                    <p class="text-xs text-stone-500">Phase: ${todaysActivity.phaseName} | Week: ${todaysActivity.weekNum}</p>
+                    ${iconHtml}
+                </div>
             </div>
         `;
         if (todaysActivity.notes) {
