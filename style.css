@@ -647,24 +647,48 @@ body.dark-mode .content-card {
     background-color: var(--main-container-bg); /* For dark mode */
     color: var(--text-color); /* For dark mode */
     border-radius: var(--border-radius-medium); /* Added border-radius */
+    max-width: 320px; /* Set a max-width */
+    margin-left: auto;   /* Center the input */
+    margin-right: auto;  /* Center the input */
+    /* Tailwind's w-full will make it try to be 100% of parent,
+       but max-width will cap it. Margin auto centers it. */
 }
 #userIdInput:focus {
     outline: 2px solid transparent; outline-offset: 2px; border-color: var(--input-userid-focus-border);
     box-shadow: 0 0 0 3px var(--input-userid-focus-shadow);
 }
 label[for="userIdInput"] {
-    border-left-width: 4px;
-    border-color: var(--label-userid-border-l);
-    padding-left: 0.5rem;
+    /* border-left-width: 4px; */ /* REMOVED for top alignment */
+    /* border-color: var(--label-userid-border-l); */ /* REMOVED */
+    /* padding-left: 0.5rem; */ /* REMOVED */
+
+    /* Ensure consistent alignment with the input field below it */
+    display: block; /* Reinforces Tailwind 'block' class */
+    max-width: 320px; /* Match the #userIdInput max-width */
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-bottom: 0.25rem; /* Tailwind 'mb-1' already handles this */
+    text-align: left; /* Default, explicitly stated for clarity */
 }
 #loginButton {
     border-radius: var(--border-radius-pill); /* Updated border-radius */
     box-shadow: var(--shadow-elevation-low);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* Tailwind classes handle base bg, text color, padding, font, etc. */
+    /* Ensure w-full from Tailwind is respected unless a max-width is added here. */
+    transition: background-color 0.2s ease-in-out,
+                transform 0.15s ease-in-out,
+                box-shadow 0.2s ease-in-out;
 }
-#loginButton:hover, #loginButton:focus {
-    transform: translateY(-1px) scale(1.02);
+#loginButton:hover,
+#loginButton:focus {
+    /* hover:bg-sky-700 is handled by Tailwind */
+    transform: translateY(-2px) scale(1.03); /* More pronounced hover/focus */
     box-shadow: var(--shadow-elevation-medium);
+}
+#loginButton:active {
+    transform: scale(0.96) translateY(1px); /* Clear press feedback */
+    background-color: var(--nav-button-active-overview-hover-bg); /* Darker shade like active nav buttons */
+    box-shadow: none; /* Flatten shadow on press */
 }
 
 input[type="text"]:not(#userIdInput), /* Added base style for border-radius */
@@ -1764,4 +1788,228 @@ body.dark-mode #todayNextDay:not(:disabled):hover {
 /* Assuming direct children of #app-content are sections that get replaced */
 #app-content > section {
     animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* --- Training Activity Icon Styles --- */
+.training-activity-icon {
+    width: 2rem;  /* Approx 32px */
+    height: 2rem; /* Approx 32px */
+    object-fit: contain; /* Ensures aspect ratio is maintained if SVGs vary */
+    /* vertical-align: middle; /* Useful if not in a flex container, but items-center on parent handles it */
+}
+
+/* --- Scrolling Names List Widget --- */
+#runners-scroll-widget h3 {
+    /* Tailwind classes 'text-xl font-semibold text-stone-700 mb-4 text-center md:text-left'
+       from index.html already handle most of this. Add overrides if needed. */
+    /* color: var(--text-color); Ensure dark mode compatibility if not using Tailwind text color */
+}
+
+body.dark-mode #runners-scroll-widget h3 {
+    /* color: var(--dm-text-color); Ensure dark mode compatibility */
+}
+
+#runners-scroll-container {
+    height: 350px; /* Fixed height for the scrollable area */
+    overflow: hidden; /* Crucial for the scrolling illusion */
+    position: relative; /* For the fading pseudo-elements */
+    border: 1px solid var(--table-border);
+    border-radius: var(--border-radius-medium);
+    padding: 0.5rem 0; /* Padding top/bottom for the fade effect to look better, no horizontal padding for list */
+    background-color: var(--content-card-bg);
+}
+
+#runners-scroll-container::before,
+#runners-scroll-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2.5rem; /* Increased height of the fade effect */
+    z-index: 1; /* Ensure fade is above the list items */
+}
+
+#runners-scroll-container::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--content-card-bg) 60%, transparent);
+}
+
+#runners-scroll-container::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--content-card-bg) 60%, transparent);
+}
+
+body.dark-mode #runners-scroll-container {
+    border-color: var(--dm-table-border);
+    background-color: var(--dm-content-card-bg);
+}
+
+body.dark-mode #runners-scroll-container::before {
+    background: linear-gradient(to bottom, var(--dm-content-card-bg) 60%, transparent);
+}
+
+body.dark-mode #runners-scroll-container::after {
+    background: linear-gradient(to top, var(--dm-content-card-bg) 60%, transparent);
+}
+
+#runners-list {
+    list-style: none;
+    margin: 0;
+    padding: 0; /* Padding will be on li elements or the container */
+    /* Animation will be applied via .scrolling class */
+}
+
+#runners-list li {
+    padding: 0.6rem 0.5rem; /* Adjusted padding */
+    text-align: center;
+    font-size: 1rem; /* Slightly larger for better readability */
+    color: var(--text-color);
+    border-bottom: 1px dashed var(--table-border); /* Optional: separator */
+}
+body.dark-mode #runners-list li {
+    color: var(--dm-text-color);
+    border-bottom-color: var(--dm-table-border);
+}
+
+#runners-list li:last-child {
+    border-bottom: none;
+}
+
+@keyframes autoScrollUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        /* Assumes JS duplicates list content for seamless scroll.
+           If list height is H, and it's doubled, this moves original content up by its full height. */
+        transform: translateY(-50%);
+    }
+}
+
+#runners-list.scrolling {
+    /* Duration needs to be long enough for comfortable reading.
+       Example: 50 names * 2 (for duplication) * 0.75s/item = 75s
+       Adjust based on final item count and desired speed. */
+    animation: autoScrollUp 75s linear infinite;
+}
+
+/* Pause animation on hover for better UX */
+#runners-scroll-container:hover #runners-list.scrolling {
+    animation-play-state: paused;
+}
+
+/* --- Login Page Layout Adjustments --- */
+#login-layout-wrapper {
+    /* This ID is on the div that has Tailwind's md:flex.
+       This ensures columns align to the top if their content causes different heights. */
+    align-items: flex-start;
+}
+
+/* Note: Responsive column widths (e.g., md:w-1/2) and hiding the
+   runners widget on small screens are handled by Tailwind classes in index.html.
+   #login-form-column and #runners-scroll-widget will stack by default on small screens
+   as md:flex only applies at the medium breakpoint and above. */
+
+/* --- Login Button Runner Animation --- */
+#loginButtonWrapper {
+    position: relative; /* Keep for animation context */
+    max-width: 320px;   /* Match #userIdInput's max-width */
+    margin-left: auto;  /* Center the wrapper */
+    margin-right: auto; /* Center the wrapper */
+    /* The button inside is w-full, so it will fill this wrapper.
+       Vertical spacing (margin-top) should be handled by the parent div.space-y-4 */
+}
+
+.runner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--logo-d-text); /* Using a theme color (sky blue) */
+    border-radius: 50%; /* Simple circles */
+    opacity: 0; /* Hidden by default, made visible by .animate-runners */
+    left: 50%;
+    top: 100%; /* Start below the button */
+    transform: translate(-50%, 0); /* Center below */
+}
+
+#loginButtonWrapper.animate-runners .runner {
+    opacity: 0.7; /* Become visible when animation starts */
+}
+
+#loginButtonWrapper.animate-runners #runner1 {
+    animation: raceAroundButton1 1.5s linear infinite;
+}
+#loginButtonWrapper.animate-runners #runner2 {
+    animation: raceAroundButton2 1.5s linear infinite;
+    animation-delay: 0.25s; /* Stagger start times */
+}
+#loginButtonWrapper.animate-runners #runner3 {
+    animation: raceAroundButton3 1.5s linear infinite;
+    animation-delay: 0.5s; /* Stagger start times */
+}
+
+/* Keyframes for simplified "around the button" effect */
+/* Each runner fades in/out at specific points to simulate continuous motion */
+
+@keyframes raceAroundButton1 {
+    0% { transform: translate(-50%, 5px) scale(0.8); left: 50%; top: 100%; opacity: 0; } /* Start below, transparent */
+    10% { transform: translate(-50%, 5px) scale(0.8); left: 50%; top: 100%; opacity: 0.7; } /* Fade in below */
+    25% { transform: translate(0px, -50%) scale(1); left: 100%; top: 50%; opacity: 1; margin-left: 5px; } /* Right middle, margin to clear button edge */
+    40% { transform: translate(0px, -50%) scale(1); left: 100%; top: 50%; opacity: 0; margin-left: 5px; } /* Fade out right */
+    40.01% { transform: translate(-50%, -5px) scale(0.8); left: 50%; top: 0%; opacity: 0; margin-top: -5px; } /* Teleport to top, transparent, margin to clear */
+    50% { transform: translate(-50%, -5px) scale(0.8); left: 50%; top: 0%; opacity: 0.7; margin-top: -5px; } /* Fade in top */
+    75% { transform: translate(-100%, -50%) scale(1); left: 0%; top: 50%; opacity: 1; margin-left: -5px; } /* Left middle, margin to clear */
+    90% { transform: translate(-100%, -50%) scale(1); left: 0%; top: 50%; opacity: 0; margin-left: -5px; } /* Fade out left */
+    90.01% { transform: translate(-50%, 5px) scale(0.8); left: 50%; top: 100%; opacity: 0; } /* Teleport to bottom, transparent */
+    100% { transform: translate(-50%, 5px) scale(0.8); left: 50%; top: 100%; opacity: 0; } /* Ensure ends transparent */
+}
+
+@keyframes raceAroundButton2 { /* Staggered and slightly different Y offset */
+    0% { transform: translate(-50%, 8px) scale(0.7); left: 50%; top: 100%; opacity: 0; }
+    10% { transform: translate(-50%, 8px) scale(0.7); left: 50%; top: 100%; opacity: 0.6; }
+    25% { transform: translate(0px, -50%) scale(0.9); left: 100%; top: 50%; opacity: 0.9; margin-left: 8px; }
+    40% { transform: translate(0px, -50%) scale(0.9); left: 100%; top: 50%; opacity: 0; margin-left: 8px; }
+    40.01% { transform: translate(-50%, -8px) scale(0.7); left: 50%; top: 0%; opacity: 0; margin-top: -8px; }
+    50% { transform: translate(-50%, -8px) scale(0.7); left: 50%; top: 0%; opacity: 0.6; margin-top: -8px; }
+    75% { transform: translate(-100%, -50%) scale(0.9); left: 0%; top: 50%; opacity: 0.9; margin-left: -8px; }
+    90% { transform: translate(-100%, -50%) scale(0.9); left: 0%; top: 50%; opacity: 0; margin-left: -8px; }
+    90.01% { transform: translate(-50%, 8px) scale(0.7); left: 50%; top: 100%; opacity: 0; }
+    100% { transform: translate(-50%, 8px) scale(0.7); left: 50%; top: 100%; opacity: 0; }
+}
+
+@keyframes raceAroundButton3 { /* Staggered and different scale/Y-offset */
+    0% { transform: translate(-50%, 3px) scale(0.9); left: 50%; top: 100%; opacity: 0; }
+    10% { transform: translate(-50%, 3px) scale(0.9); left: 50%; top: 100%; opacity: 0.8; }
+    25% { transform: translate(0px, -50%) scale(1.1); left: 100%; top: 50%; opacity: 1; margin-left: 3px; }
+    40% { transform: translate(0px, -50%) scale(1.1); left: 100%; top: 50%; opacity: 0; margin-left: 3px; }
+    40.01% { transform: translate(-50%, -3px) scale(0.9); left: 50%; top: 0%; opacity: 0; margin-top: -3px; }
+    50% { transform: translate(-50%, -3px) scale(0.9); left: 50%; top: 0%; opacity: 0.8; margin-top: -3px; }
+    75% { transform: translate(-100%, -50%) scale(1.1); left: 0%; top: 50%; opacity: 1; margin-left: -3px; }
+    90% { transform: translate(-100%, -50%) scale(1.1); left: 0%; top: 50%; opacity: 0; margin-left: -3px; }
+    90.01% { transform: translate(-50%, 3px) scale(0.9); left: 50%; top: 100%; opacity: 0; }
+    100% { transform: translate(-50%, 3px) scale(0.9); left: 50%; top: 100%; opacity: 0; }
+}
+
+/* --- Screen Transition Styles --- */
+#login-container,
+#main-app-wrapper {
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* #login-container by default is opacity: 1 if not hidden by Tailwind 'hidden' class */
+
+#main-app-wrapper {
+    /* This already has class="main-container hidden" in HTML.
+       When 'hidden' (display:none) is removed by JS, opacity 0 allows it to fade in. */
+    opacity: 0;
+}
+
+.screen-is-fading-out {
+    opacity: 0 !important;
+    pointer-events: none !important; /* Prevent interaction during/after fade-out */
+}
+
+.screen-is-fading-in {
+    opacity: 1 !important;
+    pointer-events: auto !important; /* Ensure interactable after fade-in */
 }
