@@ -21,6 +21,7 @@ const userSpecificDataSources = {
     "ELENI": "https://script.google.com/macros/s/AKfycbwHzz_ww7-0Ucb0METuQoaQLVDyOy505HE7SmMyLggvvIcZMIhMGe-BMBXyh8oJC6mt/exec",
     "KONA": "tba",
     "NIKOL": "tba",
+    "PLIAXA": "https://script.google.com/macros/s/AKfycbwIsM1dWmt2BxsYuK9ccfi-vEKDXlIu9WPlEGHZstyp4YYglrHZvTqaHkBwHeucX4-a/exec",
     "IOANNA": "tba",
 };
 
