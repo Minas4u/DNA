@@ -22,7 +22,7 @@ const userSpecificDataSources = {
     "KONA": "tba",
     "NIKOL": "tba",
     "PLIAXA": "https://script.google.com/macros/s/AKfycbwIsM1dWmt2BxsYuK9ccfi-vEKDXlIu9WPlEGHZstyp4YYglrHZvTqaHkBwHeucX4-a/exec",
-    "TEAM1": "https://script.google.com/macros/s/AKfycbzTuwmsvdWypxd0qLeekbJHVZYey6T6kXksnE-zWs6TkKmaA0jXvqtMXK89EacSZuvs9A/exec",
+    "TEAM1": "https://script.google.com/macros/s/AKfycbyt8Jx19GErckQHllVtgQkeNhSDEL78L4voNmdY1rJ6e7YXLHZNYtqrI8gR3UsFPBBrYw/exec",
 };
 
 // --- Companion App Data Source ---
