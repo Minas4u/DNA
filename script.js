@@ -16,12 +16,12 @@ const userSpecificDataSources = {
     "MANOS": "https://script.google.com/macros/s/AKfycbzq-iMRa798Z_Fw7_Ply7gSSqOt8SggVTtRTgS6WPpHtIN8jjvOlFwTDeBBbAU1M_Ws/exec",
     "MAKIS": "https://script.google.com/macros/s/AKfycby8a0HjdYJ5zCXid_FrfX7WF_EWWpQ-RfFUo0yuB0IBiZs1U_T28TtG_u83PWL-UUyN/exec",
     "SAKIS": "https://script.google.com/macros/s/AKfycbz9XApaSi9N6ml4nz7C-ybobIyzpG81E7Kqakmsi_iDinG5msJK-_b0ijDgYJmuSvGAnA/exec",
-    "EVI": "tba",
+    "EVI": "https://script.google.com/macros/s/AKfycbxx0HRFPXVczREoknM-nvFaqGHN9iIMwnXTIK0yMqZXoHdaR_8VZdqqiaRCOugqaJU-Cw/exec",
     "EVA": "tba",
     "ELENI": "https://script.google.com/macros/s/AKfycbwHzz_ww7-0Ucb0METuQoaQLVDyOy505HE7SmMyLggvvIcZMIhMGe-BMBXyh8oJC6mt/exec",
     "KONA": "tba",
     "NIKOL": "tba",
-    "IOANNA": "tba",
+    "TEAM1": "https://script.google.com/macros/s/AKfycbyt8Jx19GErckQHllVtgQkeNhSDEL78L4voNmdY1rJ6e7YXLHZNYtqrI8gR3UsFPBBrYw/exec",
 };
 
 // --- Companion App Data Source ---
