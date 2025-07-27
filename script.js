@@ -26,6 +26,8 @@ const userSpecificDataSources = {
     "TEAM3": "https://script.google.com/macros/s/AKfycbynQC4AgbMmN0xIzVuHLmW0H0NgcyQvsLZkdAgFpsYVwcaJ8TSIc4rd-7JdgvjeRfZEtQ/exec",
     "TEAM4": "https://script.google.com/macros/s/AKfycbwqpClWFMzQPomsn863FiTJGafenT5z669x0RPZK8xMvMCQ2VfU3v2WTK5Df8VIcgKa/exec",
     "TEAM5": "https://script.google.com/macros/s/AKfycbx6zKz_KMTl_mtK17H69cb9X0NnNyEqw4VzBvr52onIKqr637ka7nbHaIcuBlgHOe30/exec",
+    "MARKAKIS": "https://script.google.com/macros/s/AKfycbzmml_Vmj8FjoILyronMM56-BwgT2VEOV46fV6vL8pr32Wot23MOzRmyM0ROHhNAarm/exec",
+    "EFI": "tba",
 };
 
 // --- Companion App Data Source ---
