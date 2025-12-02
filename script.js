@@ -14,7 +14,7 @@ const userSpecificDataSources = {
     "PENNY": "https://script.google.com/macros/s/AKfycbwLnp_ejK7kWEuH3opf9YHgtFBAnVsM3la7KyVf_gwmjwhlEJ2mi5hRK470Npl6nZ2vYg/exec",
     "VASSO": "https://script.google.com/macros/s/AKfycbyVKYRRgK0V2X1iYBvOkJ8Rny0j5_Ct3cqFpmTkcy8r7WDySOAwnOnzA5gVdlFtOOT4nw/exec",
     "MANOS": "https://script.google.com/macros/s/AKfycbzq-iMRa798Z_Fw7_Ply7gSSqOt8SggVTtRTgS6WPpHtIN8jjvOlFwTDeBBbAU1M_Ws/exec",
-    "MAKIS": "https://script.google.com/macros/s/AKfycby8a0HjdYJ5zCXid_FrfX7WF_EWWpQ-RfFUo0yuB0IBiZs1U_T28TtG_u83PWL-UUyN/exec",
+    "SPARTATHLON": "https://script.google.com/macros/s/AKfycby8a0HjdYJ5zCXid_FrfX7WF_EWWpQ-RfFUo0yuB0IBiZs1U_T28TtG_u83PWL-UUyN/exec",
     "SAKIS": "https://script.google.com/macros/s/AKfycbz9XApaSi9N6ml4nz7C-ybobIyzpG81E7Kqakmsi_iDinG5msJK-_b0ijDgYJmuSvGAnA/exec",
     "EVI": "https://script.google.com/macros/s/AKfycbxx0HRFPXVczREoknM-nvFaqGHN9iIMwnXTIK0yMqZXoHdaR_8VZdqqiaRCOugqaJU-Cw/exec",
     "MARIAPOL": "https://script.google.com/macros/s/AKfycby3x0pcJkM5s0LVugMnuM4LuKOopUFEB4mVg9H_N84xLyw6iaxuQCNCBeRM9RH04ASW/exec",
